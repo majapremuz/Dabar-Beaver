@@ -2,8 +2,21 @@ import { DateService } from './date';
 import { ImageApiInterface, ImageObject } from "./image";
 import { CompanyApiInterface, CompanyObject } from "./company";
 import { UserApiInterface } from "./user";
+import { GeoPointObject } from './geo';
 
 let dateService = new DateService();
+
+interface ContentSegmentApiInterface {
+    images_v2: Array<ImageApiInterface> | null
+    segment_description: string | null
+    segment_title: string | null
+}
+
+interface ContentSegmentInterface {
+    images_v2: Array<ImageObject> | null
+    segment_description: string | null
+    segment_title: string | null
+}
 
 export interface ContentApiInterface {
     content_id: number
@@ -21,8 +34,9 @@ export interface ContentApiInterface {
     content_show_date: string
     content_archive: string
     content_attachment_key: number
+    content_attachment_key_obj: Array<ImageApiInterface> | null
     content_description: any
-    segments: any[]
+    segments: Array<ContentSegmentApiInterface> | null
     content_image_obj: ImageApiInterface
     content_company_id_obj: CompanyApiInterface[]
     content_uid_obj: UserApiInterface[]
@@ -30,6 +44,8 @@ export interface ContentApiInterface {
     content_path: string
     content_parent_level: number
     content_has_child: boolean
+    content_location: string
+    content_location_radius: string
 }
 
 interface ContentInterface {
@@ -46,8 +62,9 @@ interface ContentInterface {
     content_show_date: boolean
     content_archive: boolean
     content_attachment_key: number
+    content_attachment_key_obj: Array<ImageObject> | null
     content_description: string | null
-    segments: any[]
+    segments: Array<ContentSegmentInterface> | null
     content_image_obj: ImageObject | null
     content_has_image: boolean
     content_company_id_obj: CompanyObject | null
@@ -56,9 +73,11 @@ interface ContentInterface {
     content_path: string
     content_parent_level: number
     content_has_child: boolean
+    content_location: GeoPointObject
+    content_location_radius: number
 }
 
-enum ContentType {
+export enum ContentType {
     Content = 'content',
     Category = 'category'
 }
@@ -77,6 +96,7 @@ export class ContentObject implements ContentInterface{
     content_show_date: boolean
     content_archive: boolean
     content_attachment_key: number
+    content_attachment_key_obj: Array<ImageObject> | null
     content_description: string | null
     segments: any[]
     content_image_obj: ImageObject | null
@@ -87,6 +107,8 @@ export class ContentObject implements ContentInterface{
     content_path: string
     content_parent_level: number
     content_has_child: boolean
+    content_location: GeoPointObject
+    content_location_radius: number
 
     constructor(data: ContentApiInterface){
         this.content_id = data.content_id;
@@ -96,7 +118,7 @@ export class ContentObject implements ContentInterface{
         this.content_main_group = data.content_main_group;
         this.content_attachment_key = data.content_attachment_key;
         this.content_description = data.content_description;
-        this.segments = data.segments;
+        this.segments = [];
         this.moderators = data.moderators;
         this.content_path = data.content_path;
         this.content_parent_level = data.content_parent_level;
@@ -112,10 +134,16 @@ export class ContentObject implements ContentInterface{
         this.content_company_id_obj = null;
         this.content_uid_obj = null;
         this.content_has_image = false;
+        this.content_attachment_key_obj = null;
+        this.content_location_radius = Number(data.content_location_radius);
+        this.content_location = new GeoPointObject();
 
+        if(data.content_location != '' && data.content_location != null){
+            this.content_location.createFromString(data.content_location);
+        }
 
         if(data.content_type != null){
-            if(data.content_type == 'content'){
+            if(data.content_type == 'text'){
                 this.content_type = ContentType.Content;
             }else{
                 this.content_type = ContentType.Category;
@@ -128,6 +156,31 @@ export class ContentObject implements ContentInterface{
 
         if(data.content_image_obj != null){
             this.content_image_obj = new ImageObject(data.content_image_obj);
+        }
+
+        if(data.content_attachment_key_obj != null){
+            data.content_attachment_key_obj.map(item => {
+                this.content_attachment_key_obj = [];
+                this.content_attachment_key_obj.push(
+                    new ImageObject(item)
+                );
+            })
+            
+        }
+
+        if(data.segments != null && data.segments.length > 0){
+            data.segments.map(item => {
+                let images: Array<ImageObject> = [];
+                item.images_v2?.map(item_img => {
+                    images.push(new ImageObject(item_img));
+                });
+
+                this.segments.push({
+                    images_v2: images,
+                    segment_description: item.segment_description,
+                    segment_title: item.segment_title
+                });
+            })
         }
 
         if(data.content_company_id_obj != null){

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { ContentApiInterface, ContentObject } from 'src/app/model/content';
 import { ControllerService } from 'src/app/services/controller.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -14,7 +15,8 @@ export class HomePage {
   contents: Array<ContentObject> = [];
 
   constructor(
-    private dataCtrl: ControllerService
+    private dataCtrl: ControllerService,
+    private router: Router
   ) {
     this.initTranslate();
   }
@@ -88,6 +90,10 @@ export class HomePage {
 
     }
 
+  }
+
+  openLocationPage() {
+    this.router.navigate(['location']);
   }
 
   async initTranslate(){

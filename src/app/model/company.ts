@@ -81,7 +81,8 @@ export class CompanyObject implements CompanyInterface{
         }
 
         if(data.company_coordinates != null){
-            let point = new GeoPointObject(data.company_coordinates);
+            let point = new GeoPointObject();
+            point.createFromString(data.company_coordinates);
             this.company_coordinates = point;
             this.company_has_coordinates = true;
         }

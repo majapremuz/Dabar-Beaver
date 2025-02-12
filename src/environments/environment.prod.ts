@@ -12,7 +12,7 @@ export const environment = {
     },
     multimedia: '/Assets/multimedia'
   },
-  google_map_api: '',
+  google_map_api: 'AIzaSyDSqpoJa-PgQciD5Tf58LmssF0FLSYwcXY',
   cache_key: 'cache-key-',
   def_image: 'assets/imgs/no-image-icon-23485.png',
   company_id: 2,

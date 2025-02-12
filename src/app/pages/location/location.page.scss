@@ -1,0 +1,24 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+  .menu-button {
+    background-color: transparent;
+    max-width: 20vmin;
+    margin: auto;
+  }
+  
+  ion-menu-button {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    height: 18vmin;
+    width: 20%;
+    --background: #a3612c;
+    --border-radius: 50%;
+  }
+  
