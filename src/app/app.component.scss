@@ -1,0 +1,25 @@
+ion-card {
+    width: 90%;
+    height: 10vmin;
+    margin: 0.5rem auto;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #a3622a;
+    color: white;
+  }
+
+  .card-image {
+    width: 15%;
+    padding-top: 1rem;
+    background-color: #7f460d;
+  }
+  
+  p {
+    font-size: 1.2rem;
+    text-indent: 1rem;
+  }
+
+  .exit-menu {
+    background-color: rgb(215, 9, 9);
+  }

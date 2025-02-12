@@ -1,0 +1,55 @@
+<ion-app>
+
+  <ion-split-pane when="md" contentId="main-content">
+    <ion-menu contentId="main-content" type="overlay" side="start" color="primary" class="ion-no-padding">
+      <ion-content class="ion-no-padding container">
+        <div class="container">
+
+          <ion-menu-toggle style="text-align: center;">
+            <ion-card>
+              <ng-container>
+                <img src="assets/menu.png" alt="menu icon" class="card-image">
+              </ng-container>
+              <p>Upoznajte dabrove</p>
+            </ion-card>
+          
+            <ion-card>
+              <ng-container>
+                <img src="assets/menu.png" alt="menu icon" class="card-image">
+              </ng-container>
+              <p>Lokacije</p>
+            </ion-card>
+          
+            <ion-card>
+              <ng-container>
+                <img src="assets/menu.png" alt="menu icon" class="card-image">
+              </ng-container>
+              <p>Pošalji sliku ili lokaciju</p>
+            </ion-card>
+          
+            <ion-card>
+              <ng-container>
+                <img src="assets/menu.png" alt="menu icon" class="card-image">
+              </ng-container>
+              <p>Provjeri znanje</p>
+            </ion-card>
+          
+            <ion-card>
+              <ng-container>
+                <img src="assets/menu.png" alt="menu icon" class="card-image">
+              </ng-container>
+              <p>Poveznice</p>
+            </ion-card>
+
+            <ion-card class="exit-menu">
+              <p>Izlaz iz menija</p>
+            </ion-card>
+
+          </ion-menu-toggle>
+ 
+         </div>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+  </ion-split-pane>
+</ion-app>

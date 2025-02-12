@@ -1,0 +1,7 @@
+{
+  "name": "beaver game",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
