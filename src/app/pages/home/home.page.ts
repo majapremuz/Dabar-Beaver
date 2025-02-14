@@ -96,6 +96,10 @@ export class HomePage {
     this.router.navigate(['location']);
   }
 
+  openQuizPage() {
+    this.router.navigate(['quiz']);
+  }
+
   async initTranslate(){
     this.translate['test_string'] = await this.dataCtrl.translateWord("TEST.STRING");
   }

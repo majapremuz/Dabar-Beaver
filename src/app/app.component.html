@@ -6,6 +6,7 @@
         <div class="container">
 
           <ion-menu-toggle style="text-align: center;">
+            <img src="assets/dabar.jpg" alt="dabar">
             <ion-card>
               <ng-container>
                 <img src="assets/menu.png" alt="menu icon" class="card-image">
@@ -17,7 +18,14 @@
               <ng-container>
                 <img src="assets/menu.png" alt="menu icon" class="card-image">
               </ng-container>
-              <p>Lokacije</p>
+              <p>Popis lokacija</p>
+            </ion-card>
+
+            <ion-card (click)="openLocationPage()">
+              <ng-container>
+                <img src="assets/menu.png" alt="menu icon" class="card-image">
+              </ng-container>
+              <p>Lokacije na karti</p>
             </ion-card>
           
             <ion-card>
@@ -27,7 +35,7 @@
               <p>Pošalji sliku ili lokaciju</p>
             </ion-card>
           
-            <ion-card>
+            <ion-card (click)="openQuizPage()">
               <ng-container>
                 <img src="assets/menu.png" alt="menu icon" class="card-image">
               </ng-container>
@@ -42,7 +50,7 @@
             </ion-card>
 
             <ion-card class="exit-menu">
-              <p>Izlaz iz menija</p>
+              <p>Zatvori meni</p>
             </ion-card>
 
           </ion-menu-toggle>

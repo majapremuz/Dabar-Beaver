@@ -1,0 +1,27 @@
+<ion-content class="ion-padding">
+  <ion-menu-button>
+    <img src="assets/menu.png" alt="menu icon" class="menu-button">
+  </ion-menu-button>
+
+  <div class="game-container">
+    <ion-title>Kviz dabar</ion-title>
+    <div *ngIf="!quizOver" class="question-container">
+      <h2>{{ questions[currentQuestionIndex].question }}</h2>
+  
+      <ion-list lines="none">
+        <ion-item *ngFor="let option of questions[currentQuestionIndex].options">
+          <ion-button expand="full" (click)="answerQuestion(option)">
+            {{ option }}
+          </ion-button>
+        </ion-item>
+      </ion-list>
+    </div>
+  
+    <div *ngIf="quizOver" class="quiz-over">
+      <h2 class="ion-text-center">Kraj kviza!</h2>
+      <p>Vaš rezultat: {{ score }}/{{ questions.length }}</p>
+      <ion-button (click)="restartQuiz()" class="restartBtn">Igraj ponovno</ion-button>
+    </div>
+    <img src="assets/logotipi.jpeg" alt="logotipi">
+  </div>
+</ion-content>

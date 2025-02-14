@@ -77,4 +77,13 @@ export class AppComponent {
     // pokretanje prve stranice
     this.dataCtrl.setReadyPage();
   }
+
+  openLocationPage() {
+    this.router.navigate(['location']);
+  }
+
+  openQuizPage() {
+    this.router.navigate(['quiz']);
+  }
+  
 }
