@@ -11,11 +11,10 @@ import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'app-text',
-  templateUrl: './text.page.html',
-  styleUrls: ['./text.page.scss'],
-  standalone: true,
-  imports: [IonicModule, CommonModule]
+    selector: 'app-text',
+    templateUrl: './text.page.html',
+    styleUrls: ['./text.page.scss'],
+    imports: [IonicModule, CommonModule]
 })
 export class TextPage implements OnInit {
 

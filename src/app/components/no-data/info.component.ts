@@ -2,9 +2,10 @@ import { Component, Input, OnInit } from '@angular/core';
 import { AlertType } from 'src/app/services/controller.service';
 
 @Component({
-  selector: 'app-info',
-  templateUrl: './info.component.html',
-  styleUrls: ['./info.component.scss'],
+    selector: 'app-info',
+    templateUrl: './info.component.html',
+    styleUrls: ['./info.component.scss'],
+    standalone: false
 })
 export class InfoComponent  implements OnInit {
 

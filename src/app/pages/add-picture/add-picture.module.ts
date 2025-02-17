@@ -13,8 +13,9 @@ import { AddPicturePage } from './add-picture.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    AddPicturePageRoutingModule
+    AddPicturePageRoutingModule,
+    AddPicturePage
   ],
-  declarations: [AddPicturePage]
+  declarations: []
 })
 export class AddPicturePageModule {}

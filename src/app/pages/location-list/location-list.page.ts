@@ -4,9 +4,10 @@ import { GeoPointObject } from 'src/app/model/geo';  // Import GeoPointObject
 import { GmapsService } from 'src/app/services/gmaps.services';
 
 @Component({
-  selector: 'app-location-list',
-  templateUrl: './location-list.page.html',
-  styleUrls: ['./location-list.page.scss'],
+    selector: 'app-location-list',
+    templateUrl: './location-list.page.html',
+    styleUrls: ['./location-list.page.scss'],
+    standalone: false
 })
 export class LocationListPage implements OnInit {
   locations: GeoPointObject[] = [];

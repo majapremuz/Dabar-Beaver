@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
 import { Geolocation } from '@capacitor/geolocation';
 
 @Component({
-  selector: 'app-add-picture',
-  templateUrl: './add-picture.page.html',
-  styleUrls: ['./add-picture.page.scss'],
+    selector: 'app-add-picture',
+    templateUrl: './add-picture.page.html',
+    styleUrls: ['./add-picture.page.scss'],
+    standalone: true,
+    imports: [IonicModule],
 })
-export class AddLocationPage {
+export class AddPicturePage {
   imageUrl: string | null = null;
   location = { lat: 0, lng: 0 };
 
