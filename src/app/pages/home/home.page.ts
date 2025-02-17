@@ -96,8 +96,20 @@ export class HomePage {
     this.router.navigate(['location']);
   }
 
+  openLocationListPage() {
+    this.router.navigate(['location-list']);
+  }
+
   openQuizPage() {
     this.router.navigate(['quiz']);
+  }
+
+  openAddPicturePage() {
+    this.router.navigate(['add-picture']);
+  }
+
+  openTextPage() {
+    this.router.navigate(['text']);
   }
 
   async initTranslate(){

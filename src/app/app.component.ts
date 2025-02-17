@@ -82,8 +82,20 @@ export class AppComponent {
     this.router.navigate(['location']);
   }
 
+  openLocationListPage() {
+    this.router.navigate(['location-list']);
+  }
+
+  openAddPicturePage() {
+    this.router.navigate(['add-picture']);
+  }
+
   openQuizPage() {
     this.router.navigate(['quiz']);
   }
-  
+
+  openTextPage() {
+    this.router.navigate(['text']);
+  }
+
 }

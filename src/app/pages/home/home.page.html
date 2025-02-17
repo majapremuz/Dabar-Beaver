@@ -12,7 +12,7 @@
     <p>Upoznajte dabrove</p>
   </ion-card>
 
-  <ion-card>
+  <ion-card (click)="openLocationListPage()">
     <ng-container>
       <img src="assets/menu.png" alt="menu icon" class="card-image">
     </ng-container>
@@ -26,7 +26,7 @@
     <p>Lokacije na karti</p>
   </ion-card>
 
-  <ion-card>
+  <ion-card (click)="openAddPicturePage()">
     <ng-container>
       <img src="assets/menu.png" alt="menu icon" class="card-image">
     </ng-container>
@@ -40,7 +40,7 @@
     <p>Provjeri znanje</p>
   </ion-card>
 
-  <ion-card>
+  <ion-card (click)="openTextPage()">
     <ng-container>
       <img src="assets/menu.png" alt="menu icon" class="card-image">
     </ng-container>

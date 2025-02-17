@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Add Location</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-button expand="full" (click)="takePicture()">Take a Picture</ion-button>
+  <img *ngIf="imageUrl" [src]="imageUrl" style="width: 100%; height: auto;" />
+
+  <ion-button expand="full" (click)="getLocation()">Get My Location</ion-button>
+  <p *ngIf="location.lat !== 0">Latitude: {{ location.lat }}, Longitude: {{ location.lng }}</p>
+</ion-content>
