@@ -92,34 +92,29 @@ export class LocationPage implements OnInit {
     }
   }
 
-  async ngAfterViewInit(){
-    let id_str: any = this.route.snapshot.paramMap.get('id');
-
-    let lat = 46;
-    let lng = 16;
-    let zoom = 10;
-    await this.initPage(lat, lng, zoom);
+  async ngAfterViewInit() {
+    this.route.queryParams.subscribe(async params => {
+        let lat = params['lat'] ? parseFloat(params['lat']) : 46;
+        let lng = params['lng'] ? parseFloat(params['lng']) : 16;
+        let zoom = params['lat'] ? 13 : 10;
+ 
+        // Wait for map to load and then initialize page with correct location
+        await this.initPage(lat, lng, zoom);  
+        
+        if (params['lat'] && params['lng']) {
+            this.markers.forEach(item => {
+                if (item.id != 0) {
+                    item.type = 'red'; 
+                }
+            });
+        }
+    });
+ 
+    // Get the data and user location asynchronously
     await this.getData();
     await this.getMyLocation();
-
-    if(id_str != null){
-      let marker = this.markers.find(item => item.id == parseInt(id_str, 10));
-      let marker_position = marker.marker.getPosition();
-      await this.centerMap(marker_position, 17);
-      this.modalMarker = marker;
-      this.openModal('click_marker');
-    }else{
-      await this.extendScreen();
-    }
-
-    setInterval(() => {
-      this.getMyLocation();
-    }, 20*1000);
-
-    setInterval(() => {
-      this.runAnimation();
-    }, 3000);
-  }
+  } 
+  
 
   async centerMap(location: any, zoom: number){
     await this.map.panTo(location);
@@ -199,19 +194,19 @@ export class LocationPage implements OnInit {
     }
   }
 
-  async getMyLocation(){
-    try{
+  async getMyLocation() {
+    try {
       let position = await this.nativeCtrl.getCurrentPosition();
       let lat = position.coords.latitude;
       let lng = position.coords.longitude;
       this.has_my_location = true;
   
-      this.calculateLocation(lat, lng)
-    }catch{
+      await this.calculateLocation(lat, lng);
+    } catch {
       this.has_my_location = false;
     }
-
   }
+  
 
   async calculateLocation(lat: any, lng: any){
     let myPositionMarker = this.markers.find(item => item.id == 0);
@@ -271,6 +266,7 @@ export class LocationPage implements OnInit {
           item.type = 'red';
       }
     })
+    this.redrawMarkers(); 
 
     if(id_nearest != 0){
       if(distance < radius_nearest){

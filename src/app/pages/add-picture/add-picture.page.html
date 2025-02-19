@@ -1,13 +1,22 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>Pošalji sliku ili lokaciju</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content class="ion-padding">
-  <ion-button expand="full" (click)="takePicture()">Pošalji sliku</ion-button>
-  <img *ngIf="imageUrl" [src]="imageUrl" style="width: 100%; height: auto;" />
+  <ion-menu-button>
+    <img src="assets/menu.png" alt="menu icon" class="menu-button">
+  </ion-menu-button>
 
-  <ion-button expand="full" (click)="getLocation()">Pošalji lokaciju</ion-button>
-  <p *ngIf="location.lat !== 0">Latitude: {{ location.lat }}, Longitude: {{ location.lng }}</p>
+  <div class="container">
+    <ion-title>Pošalji sliku ili lokaciju</ion-title>
+
+    <div class="buttons-container">
+      <ion-button expand="full" (click)="takePicture()">Pošalji sliku</ion-button>
+      <img *ngIf="imageUrl" [src]="imageUrl" style="width: 100%; height: auto;" />
+
+      <ion-label>Umetni lokaciju</ion-label>
+      <ion-input [(ngModel)]="locationName" placeholder="Enter location (e.g., Paris)"></ion-input>
+      <ion-button expand="full" (click)="searchLocation()">Pretraži lokaciju</ion-button>
+      
+      <ion-button expand="full" (click)="getCurrentLocation()">Pošalji moju lokaciju</ion-button>
+    </div>
+
+    <img src="assets/logotipi.jpeg" alt="logotipi" class="logotipi">
+  </div>
 </ion-content>

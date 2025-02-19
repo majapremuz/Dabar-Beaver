@@ -1,18 +1,23 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 
+declare var google: any;
+
 @Injectable({
   providedIn: 'root'
 })
 export class GmapsService {
+  private map: any;
+  private markers: any[] = [];
 
-  constructor() { }
+  constructor() {}
 
+  // Load Google Maps SDK
   loadGoogleMaps(): Promise<any> {
     const win = window as any;
     const gModule = win.google;
-    if(gModule && gModule.maps) {
-     return Promise.resolve(gModule.maps);
+    if (gModule && gModule.maps) {
+      return Promise.resolve(gModule.maps);
     }
     return new Promise((resolve, reject) => {
       const script = document.createElement('script');
@@ -24,12 +29,23 @@ export class GmapsService {
       document.body.appendChild(script);
       script.onload = () => {
         const loadedGoogleModule = win.google;
-        if(loadedGoogleModule && loadedGoogleModule.maps) {
+        if (loadedGoogleModule && loadedGoogleModule.maps) {
           resolve(loadedGoogleModule.maps);
         } else {
-          reject('Google Map SDK is not Available');
+          reject('Google Map SDK is not available');
         }
       };
     });
+  }
+
+  // Initialize the map
+  initializeMap(mapElement: HTMLElement, lat: number, lng: number) {
+    const mapOptions = {
+      center: new google.maps.LatLng(lat, lng),
+      zoom: 15,
+      mapTypeId: google.maps.MapTypeId.ROADMAP
+    };
+
+    this.map = new google.maps.Map(mapElement, mapOptions);
   }
 }
