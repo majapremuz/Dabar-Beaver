@@ -29,7 +29,7 @@ export class HomePage {
   }
 
   // ovo je za content
-  async test_data_2(){
+  async test_data(){
     // sa pvpm funkcijom dobivas sve root kategorije koje ti idu na home page
     // ovu funkciju ces imati samo na home page
     let categories = await this.contentCtrl.getRootContent();
@@ -38,6 +38,12 @@ export class HomePage {
     // sa ovom funkcijom samo prosljedis id od nje u funkciju
     // 601 je ovdje samo za primjer
     let categories_new = await this.contentCtrl.getCategoryContent(601); 
+
+    // uzima samo odredeni content prema idju
+    // to je kad na primjer udes u neku stranicu
+    let content = await this.contentCtrl.getContent(601);
+
+    console.log(content);
 
     /* 
     
@@ -51,7 +57,7 @@ export class HomePage {
   }
 
   // ovo je za kvizove
-  async test_data(){
+  async test_data_2(){
     // dohvaca sve kvizove dostupne
     let questionnaire = await this.questionCtrl.getQuestionnaire();
 

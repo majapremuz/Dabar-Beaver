@@ -15,7 +15,7 @@ export class DataService {
   constructor(
     private apiCtrl: ControllerService 
   ) {
-    this.getContent();
+    this.getContentLoad();
   }
 
   private async checkCache(){
@@ -74,7 +74,7 @@ export class DataService {
     }
   }
 
-  private async getContent(){
+  private async getContentLoad(){
     let server: boolean = false;
     let cache: boolean = await this.checkCache();
     if(!cache) server = await this.checkServer();
@@ -83,7 +83,7 @@ export class DataService {
   }
 
   async getRootContent(){
-    await this.getContent();
+    await this.getContentLoad();
 
     let categories = this.content.filter(item => (item.content_parent == null));
 
@@ -97,7 +97,7 @@ export class DataService {
   }
 
   async getCategoryContent(id: number){
-    await this.getContent();
+    await this.getContentLoad();
 
     let categories = this.content.filter(item => item.content_parent_id != null && item.content_parent_id == id);
 
@@ -108,6 +108,14 @@ export class DataService {
     });
 
     return categories;
+  }
+
+  async getContent(id: number){
+    await this.getContentLoad();
+
+    let content = this.content.filter(item => item.content_id == id);
+
+    return content[0];
   }
 
 

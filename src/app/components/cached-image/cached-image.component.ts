@@ -18,8 +18,8 @@ export class CachedImageComponent  implements OnInit {
 
   @Input()
   set src(imageUrl: string){
-    const imageName = imageUrl.split('/').pop();
-    const filetype = imageName.split('.').pop();
+    const imageName = imageUrl.split('/').pop() || '';
+    const filetype = imageName?.split('.').pop();
 
     Filesystem.readFile({
       directory: Directory.Cache,
@@ -39,7 +39,7 @@ export class CachedImageComponent  implements OnInit {
     });
   }
 
-  async storeImage(url, path){
+  async storeImage(url: string, path: string){
     const response = await fetch(url);
     const blob = await response.blob();
 
