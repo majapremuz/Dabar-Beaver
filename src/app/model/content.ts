@@ -46,6 +46,7 @@ export interface ContentApiInterface {
     content_has_child: boolean
     content_location: string
     content_location_radius: string
+    content_order: string
 }
 
 interface ContentInterface {
@@ -90,6 +91,7 @@ export class ContentObject implements ContentInterface{
     content_type: ContentType
     content_user_permission: number
     content_parent: ContentObject | null
+    content_parent_id: number | null
     content_main_group: number
     content_public_date: string | null
     content_show_autor: boolean
@@ -109,6 +111,7 @@ export class ContentObject implements ContentInterface{
     content_has_child: boolean
     content_location: GeoPointObject
     content_location_radius: number
+    content_order: number
 
     constructor(data: ContentApiInterface){
         this.content_id = data.content_id;
@@ -137,6 +140,8 @@ export class ContentObject implements ContentInterface{
         this.content_attachment_key_obj = null;
         this.content_location_radius = Number(data.content_location_radius);
         this.content_location = new GeoPointObject();
+        this.content_order = parseInt(data.content_order, 10);
+        this.content_parent_id = data.content_parent;
 
         if(data.content_location != '' && data.content_location != null){
             this.content_location.createFromString(data.content_location);
