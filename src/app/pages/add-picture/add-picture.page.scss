@@ -1,5 +1,6 @@
 ion-content {
   --background: url('/assets/app-naslovna.jpg') 0 0/100% 100% no-repeat;
+  position: relative;
 }
 
 .container {
@@ -15,6 +16,7 @@ ion-content {
     position: absolute;
     bottom: 0;
     right: 0;
+    padding-bottom: 5rem;
   }
 
   ion-title {
@@ -70,19 +72,26 @@ ion-input {
 }
 
 .menu-button {
-    background-color: transparent;
-    max-width: 20vmin;
-    margin: auto;
-  }
-  
+  background-color: transparent;
+  max-width: 20vmin;
+  margin: auto;
+}
+
 ion-menu-button {
-    position: absolute;
-    top: 1rem;
-    right: 1rem;
-    height: 18vmin;
-    width: 20%;
-    --background: #a3612c;
-    --border-radius: 50%;
+  position: absolute;
+  right: 1rem;
+  height: 18vmin;
+  width: 20%;
+  margin-top: 2rem;
+  --background: #a3612c;
+  --border-radius: 50%;
+}
+
+.user-image {
+  width: 20vmin; 
+  height: 20vmin; 
+  position: relative; 
+  left: 40%;
 }
 
 .buttons-container {
@@ -93,7 +102,7 @@ ion-menu-button {
   max-width: 100%;
   height: auto;
   position: relative;
-  margin: 1rem auto;
+  margin: 5rem auto;
   z-index: 10;
 }
 
@@ -102,23 +111,18 @@ ion-menu-button {
   .container {
     padding-bottom: 4rem;
   }
-
-  ion-menu-button {
-    position: absolute;
-    top: 0rem;
-    right: 1rem;
-  }
 }
 
 @media (min-width: 360px) and (max-height: 640px) {  
   .container {
     padding-bottom: 4rem;
-    margin-top: 0;
+    padding-top: -5rem;
     height: auto;
   }
 
   ion-title {
     top: 5rem;
+    font-size: 1.5rem;
   }
 
   ion-menu-button {
@@ -126,11 +130,26 @@ ion-menu-button {
     top: -1rem;
     right: 1rem;
   }
+
+  .logotipi {
+    margin: 2rem auto;
+  }
 }
 
 
 @media (min-width: 412px) {
   .container {
     padding-bottom: 4rem;
+  }
+}
+
+@media (min-width: 360px), (min-height: 640px) {
+  .container {
+    transform: scaleY(0.85);
+    bottom: -1rem;
+  }
+
+  ion-menu-button {
+    top: 0.5rem;
   }
 }

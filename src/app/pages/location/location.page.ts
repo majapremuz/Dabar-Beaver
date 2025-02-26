@@ -327,7 +327,7 @@ export class LocationPage implements OnInit {
         position: { lat, lng },
         map: this.map,
         icon: {
-            url: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+            url: 'https://maps.google.com/mapfiles/ms/icons/red-dot.png',
             scaledSize: new this.googleMaps.Size(50, 50)
         }
     });
