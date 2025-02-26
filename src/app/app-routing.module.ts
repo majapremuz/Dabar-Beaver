@@ -14,24 +14,28 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'location',
+    path: 'Lokacije na karti',
     loadChildren: () => import('./pages/location/location.module').then( m => m.LocationPageModule)
   },
   {
-    path: 'quiz',
+    path: 'Provjeri znanje',
     loadChildren: () => import('./pages/quiz/quiz.module').then( m => m.QuizPageModule)
   },
   {
-    path: 'text',
+    path: 'Upoznajte dabrove',
     loadChildren: () => import('./pages/text/text.module').then( m => m.TextPageModule)
   },
   {
-    path: 'location-list',
+    path: 'Popis lokacija',
     loadChildren: () => import('./pages/location-list/location-list.module').then( m => m.LocationListPageModule)
   },
   {
-    path: 'add-picture',
+    path: 'Pošalji sliku ili lokaciju',
     loadChildren: () => import('./pages/add-picture/add-picture.module').then( m => m.AddPicturePageModule)
+  },
+  {
+    path: 'Poveznice',
+    loadChildren: () => import('./poveznice/poveznice.module').then( m => m.PoveznicePageModule)
   },
 ];
 

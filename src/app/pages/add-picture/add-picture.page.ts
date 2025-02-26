@@ -7,13 +7,14 @@ import { Geolocation } from '@capacitor/geolocation';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { FooterComponent } from 'src/app/components/footer/footer.component';
 
 @Component({
     selector: 'app-add-picture',
     templateUrl: './add-picture.page.html',
     styleUrls: ['./add-picture.page.scss'],
     standalone: true,
-    imports: [IonicModule, CommonModule, FormsModule],
+    imports: [IonicModule, CommonModule, FormsModule, FooterComponent],
 })
 export class AddPicturePage {
   imageUrl: string | null = null;
@@ -74,7 +75,7 @@ export class AddPicturePage {
 
   navigateToMap(lat: number, lng: number) {
     console.log('Navigating to:', lat, lng);
-    this.router.navigate(['/location'], { 
+    this.router.navigate(['/Lokacije na karti'], { 
       queryParams: { lat, lng }
     });
   }

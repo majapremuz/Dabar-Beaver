@@ -7,16 +7,36 @@
     <ion-title>Pošalji sliku ili lokaciju</ion-title>
 
     <div class="buttons-container">
-      <ion-button expand="full" (click)="takePicture()">Pošalji sliku</ion-button>
+      <ion-card (click)="takePicture()">
+        <ng-container>
+          <img src="assets/menu.png" alt="menu icon" class="card-image">
+          <p>Pošalji sliku</p>
+        </ng-container>
+      </ion-card>
+
       <img *ngIf="imageUrl" [src]="imageUrl" style="width: 100%; height: auto;" />
 
-      <ion-label>Umetni lokaciju</ion-label>
-      <ion-input [(ngModel)]="locationName" placeholder="Enter location (e.g., Paris)"></ion-input>
-      <ion-button expand="full" (click)="searchLocation()">Pretraži lokaciju</ion-button>
-      
-      <ion-button expand="full" (click)="getCurrentLocation()">Pošalji moju lokaciju</ion-button>
-    </div>
+      <div class="location-search">
+        <ion-label>Umetni lokaciju</ion-label>
+        <ion-input [(ngModel)]="locationName" placeholder="Enter location (e.g., Paris)"></ion-input>
 
-    <img src="assets/logotipi.jpeg" alt="logotipi" class="logotipi">
+        <ion-card (click)="searchLocation()">
+          <ng-container>
+            <img src="assets/menu.png" alt="menu icon" class="card-image">
+            <p>Pretraži lokaciju</p>
+          </ng-container>
+        </ion-card>
+      </div>
+
+      <ion-card (click)="getCurrentLocation()">
+        <ng-container>
+          <img src="assets/menu.png" alt="menu icon" class="card-image">
+          <p>Pošalji moju lokaciju</p>
+        </ng-container>
+      </ion-card>
+  <img src="assets/logotipi.jpeg" alt="logotipi" class="logotipi">
+    </div>
   </div>
+
+  <app-footer></app-footer>
 </ion-content>

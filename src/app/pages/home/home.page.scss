@@ -1,3 +1,7 @@
+ion-content {
+  --background: url('/assets/app-naslovna.jpg') 0 0/100% 100% no-repeat;
+}
+
 .container {
   display: flex;
   flex-direction: column;
@@ -36,7 +40,7 @@ p {
 
 ion-menu-button {
   position: absolute;
-  top: 1rem;
+  top: 3rem;
   right: 1rem;
   height: 18vmin;
   width: 20%;

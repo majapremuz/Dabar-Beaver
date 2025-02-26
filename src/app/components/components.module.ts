@@ -7,8 +7,8 @@ import { InfoComponent } from "./no-data/info.component";
 import { CachedImageComponent } from "./cached-image/cached-image.component";
 
 @NgModule({
-    imports: [IonicModule, CommonModule],
-    declarations: [InfoComponent, CachedImageComponent],
+    imports: [IonicModule, CommonModule, CachedImageComponent],
+    declarations: [InfoComponent],
     exports: [InfoComponent, CachedImageComponent]
 })
 export class ComponentsModule{}

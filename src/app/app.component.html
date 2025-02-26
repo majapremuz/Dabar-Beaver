@@ -7,47 +7,13 @@
 
           <ion-menu-toggle style="text-align: center;">
             <img src="assets/dabar.jpg" alt="dabar">
-            <ion-card>
-              <ng-container>
-                <img src="assets/menu.png" alt="menu icon" class="card-image">
-              </ng-container>
-              <p>Upoznajte dabrove</p>
-            </ion-card>
-          
-            <ion-card (click)="openLocationListPage()">
-              <ng-container>
-                <img src="assets/menu.png" alt="menu icon" class="card-image">
-              </ng-container>
-              <p>Popis lokacija</p>
-            </ion-card>
 
-            <ion-card (click)="openLocationPage()">
-              <ng-container>
-                <img src="assets/menu.png" alt="menu icon" class="card-image">
-              </ng-container>
-              <p>Lokacije na karti</p>
-            </ion-card>
-          
-            <ion-card (click)="openAddPicturePage()">
-              <ng-container>
-                <img src="assets/menu.png" alt="menu icon" class="card-image">
-              </ng-container>
-              <p>Pošalji sliku ili lokaciju</p>
-            </ion-card>
-          
-            <ion-card (click)="openQuizPage()">
-              <ng-container>
-                <img src="assets/menu.png" alt="menu icon" class="card-image">
-              </ng-container>
-              <p>Provjeri znanje</p>
-            </ion-card>
-          
-            <ion-card (click)="openTextPage()">
-              <ng-container>
-                <img src="assets/menu.png" alt="menu icon" class="card-image">
-              </ng-container>
-              <p>Poveznice</p>
-            </ion-card>
+              <ion-card *ngFor="let category of categories" (click)="openCategory(category.content_name)">
+                <ng-container *ngIf="dataLoad">
+                  <img src="assets/menu.png" alt="menu icon" class="card-image">
+                </ng-container>
+                <p>{{ category.content_name }}</p>
+              </ion-card>
 
             <ion-card class="exit-menu">
               <p>Zatvori meni</p>

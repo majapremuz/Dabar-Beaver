@@ -4,18 +4,18 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { QuizPageRoutingModule } from './quiz-routing.module';
+import { PoveznicePageRoutingModule } from './poveznice-routing.module';
 
-import { QuizPage } from './quiz.page';
+import { PoveznicePage } from './poveznice.page';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    QuizPageRoutingModule,
-    QuizPage
+    PoveznicePageRoutingModule,
+    PoveznicePage
   ],
   declarations: []
 })
-export class QuizPageModule {}
+export class PoveznicePageModule {}

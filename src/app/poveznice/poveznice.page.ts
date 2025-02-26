@@ -7,16 +7,18 @@ import { ControllerService } from 'src/app/services/controller.service';
 import { NativeService } from 'src/app/services/native.service';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
-import { FooterComponent } from 'src/app/components/footer/footer.component';
-import { CachedImageComponent } from 'src/app/components/cached-image/cached-image.component';
+import { FooterComponent } from '../components/footer/footer.component';  
+import { CachedImageComponent } from '../components/cached-image/cached-image.component';
+
 
 @Component({
-    selector: 'app-text',
-    templateUrl: './text.page.html',
-    styleUrls: ['./text.page.scss'],
-    imports: [IonicModule, CommonModule, FooterComponent, CachedImageComponent],
+    selector: 'app-poveznice',
+    templateUrl: './poveznice.page.html',
+    styleUrls: ['./poveznice.page.scss'],
+    standalone: true,
+    imports: [IonicModule, CommonModule, FooterComponent, CachedImageComponent]
 })
-export class TextPage implements OnInit {
+export class PoveznicePage implements OnInit {
   content: ContentObject | null = null; 
   dataLoad: boolean = false;
 
@@ -39,11 +41,11 @@ export class TextPage implements OnInit {
 
   async test_data(){
     try {
-        let contentData = await this.contentCtrl.getContent(602);
+        let contentData = await this.contentCtrl.getContent(607);
         console.log("DATA: ", contentData);
         
         if (contentData) {
-          this.content = contentData;  // Assign it as an object, not an array
+          this.content = contentData;
         }
 
         this.dataLoad = true;

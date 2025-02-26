@@ -1,72 +1,63 @@
 import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { IonicModule } from '@ionic/angular';
+import { QuestionnaireService } from 'src/app/services/questionnaire.service';
+import { FooterComponent } from 'src/app/components/footer/footer.component';
 
 @Component({
-    selector: 'app-quiz',
-    templateUrl: './quiz.page.html',
-    styleUrls: ['./quiz.page.scss'],
-    standalone: false
+  selector: 'app-quiz',
+  templateUrl: './quiz.page.html',
+  styleUrls: ['./quiz.page.scss'],
+  standalone: true,
+  imports: [IonicModule, CommonModule, FooterComponent]
 })
 export class QuizPage implements OnInit {
-  questions = [
-    {
-      question: "1. Koje godine se dabar vratio u Hrvatsku?",
-      options: ["A 2016.", "B 2006.", "C 1996.", "D 1986."], 
-      answer: "C 1996."
-    },
-    {
-      question: "2. Nakon završetka projekta „Dabar u Hrvatskoj“, koliko je dabrova dovezeno sveukupno?",
-      options: ["A 85", "B 95", "C 105", "D 115"],
-      answer: "A 85"
-    },
-    {
-      question: "3. Odrasli dabar težak je između: ",
-      options: ["A 5 - 10 kg", "B 10 - 20  kg", "C 20 - 30  kg", "D 30 - 40 kg"],
-      answer: "C 20 - 30 kg"
-    },
-    {
-      question: "4. Što od navedenog dabar NE jede?",
-      options: ["A kukuruz", "B ribu", "C djetelinu", "D koru drveta"],
-      answer: "B ribu"
-    },
-    {
-      question: "5. Koliko generacija dabrova živi s roditeljima?",
-      options: ["A četiri", "B tri", "C dvije", "D jedna"],
-      answer: "C dvije"
-    },
-    {
-      question: "6. Koji građevinski materijal je dobio ime po dabru?",
-      options: ["A cigla", "B grede", "C žbuka", "D crijep"],
-      answer: "D crijep"
-    },
-    {
-      question: "7. Koje boje su prednji dabrovi zubi (glodnjaci)?",
-      options: ["A bijeli", "B sivi", "C narančasti", "D smeđi"],
-      answer: "C narančasti"
-    },
-    {
-      question: "8. Koliko dabar ima zubi?",
-      options: ["A 20", "B 16", "C 18", "D 24"],
-      answer: "A 20"
-    },
-    {
-      question: "9. Ako dvije generacije dabrova žive s roditeljima, a svake godine se rađa nova generacija dabrova kojih može biti između 1-5, koliki je najmanji i najveći broj dabrova koji odjednom mogu živjeti skupa?",
-      options: ["A 4 i 10", "B 4 i 11", "C 4 i 12", "D 4 i 14"],
-      answer: "C 4 i 12"
-    },
-    {
-      question: "10. Gdje su dabrovi naseljeni u blizini Ivanić-Grada 1996.?",
-      options: ["A u šumi Marči", "B na Petici", "C u Sobočanima", "D u šumi Žutici"],
-      answer: "D u šumi Žutici"
-    }
-  ];
-
+  questions: any[] = [];
   currentQuestionIndex = 0;
+  questionnaireName: string = '';
   score = 0;
   quizOver = false;
 
-  constructor() {}
+  constructor(private questionCtrl: QuestionnaireService) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loadQuizData();
+  }
+
+  async loadQuizData() {
+    try {
+      const questionnaire = await this.questionCtrl.getQuestionnaire();
+      
+      if (!questionnaire || questionnaire.length === 0) {
+        console.error("No questionnaires found.");
+        return;
+      }
+
+      // Select the first quiz
+      const firstQuestionnaireId = questionnaire[0].questionnaire_id;
+      this.questionnaireName = questionnaire[0].questionnaire_name;
+
+      // Fetch questions for the selected quiz
+      const questions = await this.questionCtrl.getQuestions(firstQuestionnaireId);
+
+      // Map questions and fetch answers for each one
+      this.questions = await Promise.all(
+        questions.map(async (q: any) => {
+          const answers = await this.questionCtrl.getAnswers(firstQuestionnaireId, q.questionnaire_question_id);
+          
+          return {
+            question: q.questionnaire_question_text,
+            options: answers.map((a: any) => a.questionnaire_answer_text),
+            answer: answers.find((a: any) => a.questionnaire_answer_correct === 'Y')?.questionnaire_answer_text || ""
+          };
+        })
+      );
+
+      console.log("Formatted Questions: ", this.questions);
+    } catch (error) {
+      console.error("Error loading quiz data:", error);
+    }
+  }
 
   answerQuestion(selectedOption: string) {
     const currentQuestion = this.questions[this.currentQuestionIndex];

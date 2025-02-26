@@ -6,6 +6,8 @@ import { SplashScreen } from '@capacitor/splash-screen';
 import { StatusBar, Style } from '@capacitor/status-bar';
 import { Router } from '@angular/router';
 import { App } from '@capacitor/app';
+import { ContentApiInterface, ContentObject } from 'src/app/model/content';
+import { DataService } from 'src/app/services/data.service';
 
 @Component({
     selector: 'app-root',
@@ -14,6 +16,8 @@ import { App } from '@capacitor/app';
     standalone: false
 })
 export class AppComponent {
+  dataLoad: boolean = false;
+  categories: Array<ContentObject> = [];
 
   @ViewChild(IonRouterOutlet, { static: false }) routerOutlet: IonRouterOutlet | undefined;
   
@@ -21,9 +25,14 @@ export class AppComponent {
     private router: Router,
     public platform: Platform,
     public translateConfigService: TranslateConfigService,
-    public dataCtrl: ControllerService
+    public dataCtrl: ControllerService,
+    private contentCtrl: DataService,
   ) {
     this.initApp();
+  }
+
+  ngOnInit() {
+    this.test_data();
   }
 
   async initApp(){
@@ -79,24 +88,39 @@ export class AppComponent {
     this.dataCtrl.setReadyPage();
   }
 
-  openLocationPage() {
-    this.router.navigate(['location']);
+  async test_data(){
+    // sa pvpm funkcijom dobivas sve root kategorije koje ti idu na home page
+    // ovu funkciju ces imati samo na home page
+    let categories = await this.contentCtrl.getRootContent();
+    this.categories = categories;
+    console.log("MENU CATEGORIES", this.categories); // Check if categories are being loaded correctly
+
+    // kad pojedinu kategoriju otvoris onda dobivas njezine kategorije i tekstove
+    // sa ovom funkcijom samo prosljedis id od nje u funkciju
+    // 601 je ovdje samo za primjer
+    let categories_new = await this.contentCtrl.getCategoryContent(601); 
+
+    // uzima samo odredeni content prema idju
+    // to je kad na primjer udes u neku stranicu
+    let content = await this.contentCtrl.getContent(601);
+
+    console.log(content);
+    /* 
+    
+    probaj slike koje dolaze sa servera stavljati sa
+    ovim tagom jer pn kesira slike i bude aplikacija radila brze
+    <app-cached-image [src]="url_example"></app-cached-image>
+    
+    
+    */
+    this.dataLoad = true;
+
   }
 
-  openLocationListPage() {
-    this.router.navigate(['location-list']);
-  }
 
-  openAddPicturePage() {
-    this.router.navigate(['add-picture']);
-  }
-
-  openQuizPage() {
-    this.router.navigate(['quiz']);
-  }
-
-  openTextPage() {
-    this.router.navigate(['text']);
-  }
+  openCategory(categoryName: string) {
+    this.router.navigateByUrl(categoryName);
+    console.log('open category', categoryName);
+}
 
 }

@@ -1,0 +1,29 @@
+footer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    bottom: 0;
+    background-color: white;
+    width: 100%;
+    z-index: 1;
+  }
+  
+  img {
+    height: 6vh;
+    margin: 1rem 2.6rem;
+  }
+  
+  .active-nav img {
+    border-bottom: 5px solid #c2aa88;
+  }
+  
+  a.disabled {
+    pointer-events: none;
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+  
+  a.active-nav {
+    color: #007bff; 
+  }

@@ -8,7 +8,7 @@ import { environment } from 'src/environments/environment';
 })
 export class DataService {
 
-  url: string = '/api/content/structure';
+  url: string = '/api/content/structure?pagination=0';
   content: Array<ContentObject> = [];
   content_signature: string = '';
 

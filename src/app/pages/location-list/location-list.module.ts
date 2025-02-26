@@ -13,8 +13,9 @@ import { LocationListPage } from './location-list.page';
     CommonModule,
     FormsModule,
     IonicModule,
-    LocationListPageRoutingModule
+    LocationListPageRoutingModule,
+    LocationListPage
   ],
-  declarations: [LocationListPage]
+  declarations: []
 })
 export class LocationListPageModule {}

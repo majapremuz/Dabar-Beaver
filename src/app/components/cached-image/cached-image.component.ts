@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { Filesystem, Directory } from '@capacitor/filesystem';
+import { IonicModule } from '@ionic/angular';
 
 const CACHE_FOLDER = 'CACHED-IMG';
 
@@ -7,7 +9,8 @@ const CACHE_FOLDER = 'CACHED-IMG';
   selector: 'app-cached-image',
   templateUrl: './cached-image.component.html',
   styleUrls: ['./cached-image.component.scss'],
-  standalone: false
+  standalone: true,
+  imports: [IonicModule, CommonModule]
 })
 export class CachedImageComponent  implements OnInit {
 
@@ -40,7 +43,12 @@ export class CachedImageComponent  implements OnInit {
   }
 
   async storeImage(url: string, path: string){
-    const response = await fetch(url);
+    const response = await fetch(url,{
+      cache: 'no-store',
+      method: 'GET',
+      headers: {
+        Accept: 'application/json, text/plain, /'
+      }});
     const blob = await response.blob();
 
     const base64Data = await this.convertBlobToBase64(blob) as string;

@@ -7,6 +7,7 @@ import { NativeService } from 'src/app/services/native.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { trigger, transition, useAnimation, state, style, keyframes, animate } from '@angular/animations';
+import { FooterComponent } from 'src/app/components/footer/footer.component';
 
 
 @Component({
@@ -14,7 +15,7 @@ import { trigger, transition, useAnimation, state, style, keyframes, animate } f
   templateUrl: './location.page.html',
   styleUrls: ['./location.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule],
+  imports: [IonicModule, CommonModule, FooterComponent],
   animations: [
     trigger('shakeit', [
         state('shakestart', style({
@@ -97,23 +98,20 @@ export class LocationPage implements OnInit {
         let lat = params['lat'] ? parseFloat(params['lat']) : 46;
         let lng = params['lng'] ? parseFloat(params['lng']) : 16;
         let zoom = params['lat'] ? 13 : 10;
- 
-        // Wait for map to load and then initialize page with correct location
-        await this.initPage(lat, lng, zoom);  
-        
+
+        // Initialize map at given location
+        await this.initPage(lat, lng, zoom);
+
+        // Check if a new location is searched and add a red pin
         if (params['lat'] && params['lng']) {
-            this.markers.forEach(item => {
-                if (item.id != 0) {
-                    item.type = 'red'; 
-                }
-            });
+            this.addRedMarker(lat, lng);
         }
     });
- 
-    // Get the data and user location asynchronously
+
     await this.getData();
     await this.getMyLocation();
-  } 
+}
+
   
 
   async centerMap(location: any, zoom: number){
@@ -321,6 +319,21 @@ export class LocationPage implements OnInit {
     };
     marker.setIcon(icon);
   }
+
+  addRedMarker(lat: number, lng: number) {
+    if (!this.map) return;
+
+    const redMarker = new this.googleMaps.Marker({
+        position: { lat, lng },
+        map: this.map,
+        icon: {
+            url: 'http://maps.google.com/mapfiles/ms/icons/red-dot.png',
+            scaledSize: new this.googleMaps.Size(50, 50)
+        }
+    });
+
+    this.markers.push({ id: 'searched-location', marker: redMarker });
+}
   
 
   distance(lat1: number, lon1: number, lat2: number, lon2: number) {
