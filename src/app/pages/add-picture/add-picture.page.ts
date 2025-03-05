@@ -66,6 +66,7 @@ export class AddPicturePage {
  
     await actionSheet.present();
   }
+  
   /*async takePicture() {
     const image = await Camera.getPhoto({
       quality: 90,
@@ -77,34 +78,33 @@ export class AddPicturePage {
     this.base64 = image.dataUrl!;
   }*/
 
-  async getPhoto(sourceType: CameraSource){
-    if(this.platform.is('capacitor') == true){
-      console.log('Is Capacitor:', this.platform.is('capacitor'));
-      const image = await Camera.getPhoto({
-        quality: 90,
-        allowEditing: true,
-        resultType: CameraResultType.Base64,
-        source: sourceType,
-        correctOrientation: true,
-        width: 1500
-      });
-  
-      let format: string = image.format;
-      let mime: string = '';
-      if(format == 'jpeg' || format == 'jpg'){
-        mime = 'image/jpeg';
-      }else{
-        mime = 'image/png';
+    async getPhoto(sourceType: CameraSource) {
+      if(this.platform.is('capacitor') == true){
+        const image = await Camera.getPhoto({
+          quality: 90,
+          allowEditing: true,
+          resultType: CameraResultType.Base64,
+          source: sourceType,
+          correctOrientation: false,
+          width: 1500
+        });
+    
+        let format: string = image.format;
+        let mime: string = '';
+        if(format == 'jpeg' || format == 'jpg'){
+          mime = 'image/jpeg';
+        }else{
+          mime = 'image/png';
+        }
+    
+        this.base64 = 'data:' + mime + ';base64,' + image.base64String;
+        this.imageLoad = true;
       }
-  
-      this.base64 = 'data:' + mime + ';base64,' + image.base64String;
-      this.imageLoad = true;
+      else{
+        this.imageLoad = true;
+        this.base64 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEX///+/v7+jQ3Y5AAAADklEQVQI12P4AIX8EAgALgAD/aNpbtEAAAAASUVORK5CYII=';
+      }
     }
-    else{
-      this.imageLoad = true;
-      this.base64 = 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEX///+/v7+jQ3Y5AAAADklEQVQI12P4AIX8EAgALgAD/aNpbtEAAAAASUVORK5CYII=';
-    }
-  }
 
   // Get current GPS coordinates
   async getLocation() {
@@ -123,7 +123,8 @@ export class AddPicturePage {
   async saveToServer(){
 
     // get attachment key
-    let attachment_key_response = await this.dataCtrl.postServer('/api/multimedia/attachment_key', {}).catch(err => {return undefined;});
+    let attachment_key_response = await this.dataCtrl.postServer('/api/multimedia/attachment_key',{company_id: environment.company_id})
+    .catch(err => {return undefined;});
 
     if(attachment_key_response != undefined && attachment_key_response?.['message'] == 'success'){
       let attachment_key = attachment_key_response['data']['id'];
@@ -136,7 +137,8 @@ export class AddPicturePage {
       }
 
       // send image and get image id
-      let response_image = await this.dataCtrl.postServer('/api/multimedia/multimedia_offline', {base_64: this.base64}).catch(err => {return undefined;});
+      let response_image = await this.dataCtrl.postServer('/api/multimedia/multimedia_offline', {base_64: this.base64, company_id: environment.company_id})
+      .catch(err => {return undefined;});
 
       if(response_image != undefined && response_image?.['message'] == 'success' && attachment_key != ''){
         let image_id = response_image['data']['data'];
@@ -144,7 +146,8 @@ export class AddPicturePage {
         // send image_id to attachment_id
         let data_send = {
           attachment: '['+image_id+']',
-          attachment_key: attachment_key
+          attachment_key: attachment_key,
+          company_id: environment.company_id
         };
 
         let response_attachment = await this.dataCtrl.postServer('/api/multimedia/attachment_v2', data_send);
