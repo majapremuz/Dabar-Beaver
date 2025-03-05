@@ -1,0 +1,36 @@
+<ion-content id="main-content" scroll-y="true">
+  
+  <ion-menu-button>
+    <img src="assets/menu.png" alt="menu icon" class="menu-button">
+  </ion-menu-button>
+
+  <app-back-button></app-back-button>
+
+  <div class="container" *ngIf="dataLoad && content">
+    <div class="buttons-container">
+      <ng-container *ngFor="let item of content">
+      
+        <h1>{{ item.content_name }}</h1>
+
+        <ng-container *ngFor="let segment of item.segments">
+          <p>{{ segment.segment_description }}</p>
+          
+          <div *ngFor="let link of extractLinks(segment.segment_description)">
+
+            <ion-card (click)="openLink(link)">
+              <ng-container>
+                <img src="assets/menu.png" alt="menu icon" class="card-image">
+                <p class="link-text">
+                  Otvori poveznicu
+                </p>
+              </ng-container>
+            </ion-card>
+          </div>
+        </ng-container>
+
+      </ng-container>
+    </div>
+  </div>
+
+</ion-content>
+

@@ -1,0 +1,19 @@
+<ion-content id="main-content" scroll-y="true">
+  <ion-menu-button>
+    <img src="assets/menu.png" alt="menu icon" class="menu-button">
+  </ion-menu-button>
+  
+  <app-back-button></app-back-button>
+
+  <div class="container">
+    <h1>Poveznice</h1>
+    <ion-list *ngIf="categories.length > 0" lines="none">
+      <ion-item *ngFor="let content of categories">
+          <ion-button expand="full" (click)="openContent(content.content_id)">
+            <img src="assets/menu.png" alt="menu icon" class="card-image">
+            <p>{{ content.content_name }}</p>
+          </ion-button>
+      </ion-item>
+  </ion-list>
+  </div>
+</ion-content>

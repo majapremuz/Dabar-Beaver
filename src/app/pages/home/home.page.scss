@@ -19,23 +19,30 @@ ion-card {
   align-items: center;
   background-color: #a3622a;
   color: white;
+  padding: 1.5rem 0;
 }
 
 .card-image {
-  width: 15%;
+  width: 18%;
   padding-top: 1rem;
   background-color: #7f460d;
 }
 
 p {
-  font-size: 1.2rem;
-  text-indent: 1rem;
+  font-size: 1.4rem;
+  text-indent: 0.8rem;
+  position: relative;
+  top: 3px;
 }
 
 .menu-button {
   background-color: transparent;
   max-width: 20vmin;
   margin: auto;
+  position: absolute;
+  top: 65%;
+  left: 45%;
+  transform: translate(-50%, -50%);
 }
 
 ion-menu-button {
@@ -48,3 +55,22 @@ ion-menu-button {
   --border-radius: 50%;
 }
 
+@media (min-width: 800px) {
+  ion-menu-button {
+    position: absolute;
+    top: 3rem;
+    right: 2rem;
+    height: 16vmin;
+    width: 18%;
+  }
+
+@media (min-width: 1024px) {
+  ion-menu-button {
+    position: absolute;
+    top: 3rem;
+    right: 8rem;
+    height: 16vmin;
+    width: 18%;
+  }
+}
+}

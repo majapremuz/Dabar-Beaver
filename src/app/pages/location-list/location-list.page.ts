@@ -1,25 +1,28 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
+import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { ContentApiInterface, ContentObject } from 'src/app/model/content';
 import { ControllerService } from 'src/app/services/controller.service';
-import { GeoPointObject } from 'src/app/model/geo';  // Import GeoPointObject;
-import { GmapsService } from 'src/app/services/gmaps.services';
+import { GeoPointObject } from 'src/app/model/geo';  // Import GeoPointObject
 import { DataService } from 'src/app/services/data.service';
-import { FooterComponent } from 'src/app/components/footer/footer.component';
+import { BackButtonComponent } from 'src/app/components/back-button/back-button.component';
+
+interface LocationWithGeo {
+  name: string;
+  geoPoint: GeoPointObject;
+}
 
 @Component({
-    selector: 'app-location-list',
-    templateUrl: './location-list.page.html',
-    styleUrls: ['./location-list.page.scss'],
-    standalone: true,
-    imports: [IonicModule, CommonModule, FooterComponent]
+  selector: 'app-location-list',
+  templateUrl: './location-list.page.html',
+  styleUrls: ['./location-list.page.scss'],
+  standalone: true,
+  imports: [IonicModule, CommonModule, BackButtonComponent]
 })
 export class LocationListPage implements OnInit {
-  locations: GeoPointObject[] = [];
-  categories: Array<ContentObject> = [];
-  content: ContentObject | null = null;
+  locations: LocationWithGeo[] = [];  // Use the new interface
+  content!: ContentObject;
   dataLoad: boolean = false;
 
   constructor(
@@ -29,38 +32,32 @@ export class LocationListPage implements OnInit {
   ) {}
 
   ngOnInit() {
-    //this.getLocations();
     this.test_data();
   }
 
-  async test_data(){
+  async test_data() {
     try {
-        let contentData = await this.contentCtrl.getContent(603);
-        console.log("DATA: ", contentData);
+      const categories_new = await this.contentCtrl.getCategoryContent(599); 
+      console.log("location NEW", categories_new);
+
+      this.locations = categories_new.map(category => {
+        const geoPoint = new GeoPointObject();
+        geoPoint.create(category.content_location.lat, category.content_location.lng);
         
-        if (contentData) {
-          this.content = contentData; 
-        }
+        // Return an object that contains both the name and geoPoint
+        return {
+          name: category.content_name,
+          geoPoint: geoPoint
+        };
+      });
 
-        this.dataLoad = true;
+      this.dataLoad = true;
     } catch (error) {
-        console.error("Error fetching content:", error);
+      console.error("Error fetching locations:", error);
     }
-}
+  }
 
-
-  /*async getLocations() {
-    const rawLocations = await this.dataCtrl.loadGoogleMaps(); // Assuming this gets location data
-    this.locations = rawLocations.map((loc: any) => {
-      let geoPoint = new GeoPointObject();
-      geoPoint.create(loc.lat, loc.lng);
-      return geoPoint;
-    });
-  }*/
-
-  viewOnMap(location: GeoPointObject) {
-    this.router.navigate(['/location'], { 
-      queryParams: { lat: location.lat, lng: location.lng } 
-    });
+  showOnMap(location: GeoPointObject) {
+    this.router.navigateByUrl('/Lokacije na karti/' + location.getString());
   }
 }

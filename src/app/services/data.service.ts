@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { ControllerService } from './controller.service';
 import { ContentObject } from '../model/content';
 import { environment } from 'src/environments/environment';
-
+import { HttpClient } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
@@ -13,7 +13,8 @@ export class DataService {
   content_signature: string = '';
 
   constructor(
-    private apiCtrl: ControllerService 
+    private apiCtrl: ControllerService,
+    private http: HttpClient
   ) {
     this.getContentLoad();
   }
@@ -118,6 +119,13 @@ export class DataService {
     return content[0];
   }
 
+  translateWord(word: string): Promise<string> {
+    return Promise.resolve(word);
+  }
 
-
+  postServer(url: string, data: any): Promise<any> {
+    return this.http.post(url, data).toPromise();
+  }
+  
+  
 }

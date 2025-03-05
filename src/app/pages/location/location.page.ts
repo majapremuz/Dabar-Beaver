@@ -7,7 +7,7 @@ import { NativeService } from 'src/app/services/native.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { trigger, transition, useAnimation, state, style, keyframes, animate } from '@angular/animations';
-import { FooterComponent } from 'src/app/components/footer/footer.component';
+import { BackButtonComponent } from 'src/app/components/back-button/back-button.component';
 
 
 @Component({
@@ -15,7 +15,7 @@ import { FooterComponent } from 'src/app/components/footer/footer.component';
   templateUrl: './location.page.html',
   styleUrls: ['./location.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FooterComponent],
+  imports: [IonicModule, CommonModule, BackButtonComponent],
   animations: [
     trigger('shakeit', [
         state('shakestart', style({
@@ -95,15 +95,17 @@ export class LocationPage implements OnInit {
 
   async ngAfterViewInit() {
     this.route.queryParams.subscribe(async params => {
+      console.log('Query Params:', params);
         let lat = params['lat'] ? parseFloat(params['lat']) : 46;
         let lng = params['lng'] ? parseFloat(params['lng']) : 16;
-        let zoom = params['lat'] ? 13 : 10;
+        let zoom = params['lat'] ? 15 : 10;
 
         // Initialize map at given location
         await this.initPage(lat, lng, zoom);
 
         // Check if a new location is searched and add a red pin
         if (params['lat'] && params['lng']) {
+          console.log("Location Name:", params['locationName']);
             this.addRedMarker(lat, lng);
         }
     });
@@ -301,7 +303,7 @@ export class LocationPage implements OnInit {
       if(item.id != 0){
         if(item.type != null){
           if(item.type == 'red'){
-            this.changeMarkerIcon(item.marker, 'assets/blue-map-pin.png');
+            this.changeMarkerIcon(item.marker, 'assets/red-map-pin.png');
           }
           if(item.type == 'green'){
             this.changeMarkerIcon(item.marker, 'assets/green-map-pin.png');
@@ -420,9 +422,9 @@ export class LocationPage implements OnInit {
     });
   
     if (main_category !== undefined && main_category.data.data.length > 0) {
-      let categoryData = main_category.data.data[0];
+      let categoryData = main_category.data.data[4];
       let category = new ContentObject(categoryData);
-  
+   
       const url_category = `/api/content/content_offline/?id=${category.content_id}`;
       const url_articles = `/api/content/contents_offline/?id=${category.content_id}`;
       
@@ -430,6 +432,8 @@ export class LocationPage implements OnInit {
         // Error handling...
         return undefined;
       });
+
+      console.log(category_data);
   
       if (category_data != undefined) {
         // Remove HTML tags from category content

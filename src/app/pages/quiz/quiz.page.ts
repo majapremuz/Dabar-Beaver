@@ -2,14 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { QuestionnaireService } from 'src/app/services/questionnaire.service';
-import { FooterComponent } from 'src/app/components/footer/footer.component';
+import { BackButtonComponent } from 'src/app/components/back-button/back-button.component';
 
 @Component({
   selector: 'app-quiz',
   templateUrl: './quiz.page.html',
   styleUrls: ['./quiz.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FooterComponent]
+  imports: [IonicModule, CommonModule, BackButtonComponent]
 })
 export class QuizPage implements OnInit {
   questions: any[] = [];
@@ -47,8 +47,8 @@ export class QuizPage implements OnInit {
           
           return {
             question: q.questionnaire_question_text,
-            options: answers.map((a: any) => a.questionnaire_answer_text),
-            answer: answers.find((a: any) => a.questionnaire_answer_correct === 'Y')?.questionnaire_answer_text || ""
+            options: answers.map((a: any) => String(a.questionnaire_answer_text)),
+            answer: String(answers.find((a: any) => a.questionnaire_answer_correct === 'Y')?.questionnaire_answer_text || "")
           };
         })
       );

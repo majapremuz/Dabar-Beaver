@@ -6,7 +6,7 @@ ion-content {
     background-color: white;
     border-radius: 50px 50px 0px 0px;
     width: 100%;
-    min-height: 150vmin;
+    max-height: 70vh;
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -16,7 +16,14 @@ ion-content {
     position: absolute;
     bottom: 0;
     right: 0;
-    padding: 2rem 3rem 10rem;;
+    padding: 2rem 3rem 10rem;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    color: #a3622a;
+    font-weight: 900;
+    text-align: center;
   }
   
   ion-button {
@@ -37,6 +44,10 @@ ion-content {
     background-color: transparent;
     max-width: 20vmin;
     margin: auto;
+    position: absolute;
+    top: 65%;
+    left: 45%;
+    transform: translate(-50%, -50%);
   }
   
   ion-menu-button {
@@ -48,15 +59,6 @@ ion-content {
     --background: #a3612c;
     --border-radius: 50%;
   }
-  
-  .logotipi {
-    max-width: 100%;
-    height: auto;
-    position: relative;
-    margin-top: 2rem;
-    z-index: 10;
-  }
-  
 
   img {
     max-width: 100%;
@@ -81,4 +83,29 @@ ion-content {
     right: 1rem;
   }
 }
+
+@media (min-width: 800px) {
+  ion-menu-button {
+    position: absolute;
+    top: 3rem;
+    right: 2rem;
+    height: 16vmin;
+    width: 18%;
+  }
+
+@media (min-width: 1024px) {
+  ion-menu-button {
+    position: absolute;
+    top: 3rem;
+    right: 8rem;
+    height: 16vmin;
+    width: 18%;
+  }
+
+  p {
+    width: 90%;
+  }
+}
+}
+
 

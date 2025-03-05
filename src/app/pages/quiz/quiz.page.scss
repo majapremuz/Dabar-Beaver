@@ -6,7 +6,7 @@ ion-content {
   background-color: white;
   border-radius: 50px 50px 0px 0px;
   width: 100%;
-  height: 150vmin;
+  max-height: 70vh;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -16,14 +16,20 @@ ion-content {
   position: absolute;
   bottom: 0;
   right: 0;
+  padding: 2rem 3rem 10rem;
 }
 
-ion-title {
-  position: absolute;
-  top: 1rem;
+h1 {
   font-size: 2rem;
   color: #a3622a;
   font-weight: 900;
+}
+
+.quiz-over-title {
+  font-size: 2rem;
+  color: #a3622a;
+  font-weight: 900;
+  text-align: center;
 }
 
 .question-container {
@@ -40,18 +46,20 @@ h2 {
   font-size: 1.1rem;
   width: 90%;
   margin: 0 auto;
+  padding-bottom: 2rem;
 }
 
-ion-button {
-width: 100%;
+ion-button, 
+ion-card {
+width: 80vmin;
 height: 10vmin;
-margin: 0.5rem 0;
-padding: 1rem;
+margin: 0.5rem;
 display: flex;
 justify-content: flex-start;
 align-items: center;
 --background: #a3622a;
 --color: white;
+font-size: 1rem;
 font-weight: 900;
 --box-shadow: none;
 }
@@ -65,33 +73,48 @@ font-weight: 900;
   height: 100%;
 }
 
-ion-card {
-  width: 80%;
-  height: 10vmin;
-  margin: 1rem auto;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  background-color: #a3622a;
-  color: white;
-}
 
 .card-image {
   width: 15%;
-  padding-top: 1rem;
+  padding-top: 0.7rem;
   background-color: #7f460d;
+  position: absolute;
+  left: -0.5rem;
 }
 
-p {
-  font-size: 1.2rem;
-  text-indent: 1rem;
+p, .play-again {
+  margin-left: 3rem;
+  flex-grow: 1;
+  text-align: left;
+  text-transform: none; 
 }
 
+
+.option-text,
+.play-again {
+  font-size: 1rem;
+}
+
+.play-again {
+  text-indent: 4rem;
+}
+
+.option-button {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  text-align: right;
+}
 
 .menu-button {
   background-color: transparent;
   max-width: 20vmin;
   margin: auto;
+  position: absolute;
+  top: 65%;
+  left: 45%;
+  transform: translate(-50%, -50%);
 }
 
 ion-menu-button {
@@ -102,14 +125,6 @@ ion-menu-button {
   width: 20%;
   --background: #a3612c;
   --border-radius: 50%;
-}
-
-.logotipi {
-  max-width: 100%;
-  height: auto;
-  position: absolute;
-  margin-top: 23rem;
-  z-index: 10;
 }
 
 //media query 
@@ -123,6 +138,67 @@ ion-menu-button {
     position: absolute;
     top: 3rem;
     right: 1rem;
+  }
+}
+
+//media query 
+@media (min-width: 360px) {
+  .container {
+    padding: 0rem 3rem 6rem;
+    font-size: 0.8rem
+  }
+
+  .img {
+    max-width: 100%;
+    height: 50vmin;
+  }
+
+  ion-menu-button {
+    position: absolute;
+    top: 3rem;
+    right: 1rem;
+  }
+}
+
+@media (min-width: 800px) {
+  ion-menu-button {
+    position: absolute;
+    top: 3rem;
+    right: 2rem;
+    height: 16vmin;
+    width: 18%;
+  }
+
+  option-text {
+    font-size: 1rem;
+  }
+
+  .play-again {
+    text-indent: 8rem;
+  }
+
+}
+
+@media (min-width: 1024px) {
+  ion-menu-button {
+    position: absolute;
+    top: 3rem;
+    right: 8rem;
+    height: 16vmin;
+    width: 18%;
+  }
+  
+  .play-again {
+    text-indent: 10rem;
+  }
+
+  option-text {
+    font-size: 3rem;
+    text-align: center;
+  }
+
+  ion-button {
+    width: 30vmin;
   }
 }
 

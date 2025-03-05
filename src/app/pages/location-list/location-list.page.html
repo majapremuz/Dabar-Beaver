@@ -1,28 +1,27 @@
 <ion-content id="main-content" scroll-y="true">
-  
   <ion-menu-button>
     <img src="assets/menu.png" alt="menu icon" class="menu-button">
   </ion-menu-button>
 
-  <div class="container" *ngIf="dataLoad && content?.segments">
-    <div class="buttons-container">
-      <ng-container *ngFor="let segment of content?.segments">
-        <h1 *ngIf="segment.segment_title">{{ segment.segment_title }}</h1>
-        <p>{{ segment.segment_description }}</p>
-        <div *ngIf="segment.images_v2?.length">
-          <div *ngFor="let image of segment.images_v2" class="image-container">
-            <img [src]="image.full_url" alt="{{ image.description || 'Segment Image' }}" class="img">
-            <p *ngIf="image.multimedia_description" class="img-description">
-              {{ image.multimedia_description }}
+  <app-back-button></app-back-button>
+
+  <div class="container" *ngIf="dataLoad">
+    <h1>Popis lokacije</h1>
+    <ion-list lines="none">
+      <ng-container *ngFor="let location of locations">
+        <ion-item>
+          <p>{{ location.name }}</p>
+        </ion-item>
+
+        <ion-card  (click)="showOnMap(location.geoPoint)">
+          <ng-container>
+            <img src="assets/menu.png" alt="menu icon" class="card-image">
+            <p>
+              Lokacija na karti
             </p>
-          </div>
-        </div>
+          </ng-container>
+        </ion-card>
       </ng-container>
-    </div>
-    
-    <img src="assets/logotipi.jpeg" alt="logotipi" class="logotipi">
+    </ion-list>
   </div>
-  
-  <app-footer></app-footer>
-  
 </ion-content>

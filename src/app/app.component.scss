@@ -26,3 +26,28 @@ ion-card {
     justify-content: center;
     align-items: center;
   }
+
+   //media queries
+@media (min-width: 800px) {
+  .conteiner {
+    width: 100%;
+  }
+
+  .card-image {
+    width: 20%;
+    padding-top: 1rem;
+    background-color: #7f460d;
+  }
+}
+
+@media (min-width: 1024px) {
+  .conteiner {
+    width: 100%;
+  }
+
+  .card-image {
+    width: 30%;
+    padding-top: 1rem;
+    background-color: #7f460d;
+  }
+}

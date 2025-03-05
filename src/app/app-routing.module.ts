@@ -14,6 +14,10 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'Lokacije na karti/:location',
+    loadChildren: () => import('./pages/location/location.module').then( m => m.LocationPageModule)
+  },
+  {
     path: 'Lokacije na karti',
     loadChildren: () => import('./pages/location/location.module').then( m => m.LocationPageModule)
   },
@@ -22,7 +26,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/quiz/quiz.module').then( m => m.QuizPageModule)
   },
   {
-    path: 'Upoznajte dabrove',
+    path: 'text/:id',
     loadChildren: () => import('./pages/text/text.module').then( m => m.TextPageModule)
   },
   {
@@ -34,8 +38,16 @@ const routes: Routes = [
     loadChildren: () => import('./pages/add-picture/add-picture.module').then( m => m.AddPicturePageModule)
   },
   {
+    path: 'poveznice/:id',
+    loadChildren: () => import('./pages/poveznice/poveznice.module').then( m => m.PoveznicePageModule)
+  },
+  {
+    path: 'Upoznajte dabrove',
+    loadChildren: () => import('./pages/sadrzaj-tekstova/sadrzaj-tekstova.module').then( m => m.SadrzajTekstovaPageModule)
+  },
+  {
     path: 'Poveznice',
-    loadChildren: () => import('./poveznice/poveznice.module').then( m => m.PoveznicePageModule)
+    loadChildren: () => import('./pages/sadrzaj-poveznice/sadrzaj-poveznice.module').then( m => m.SadrzajPoveznicePageModule)
   },
 ];
 

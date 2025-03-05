@@ -7,17 +7,18 @@ import { ControllerService } from 'src/app/services/controller.service';
 import { NativeService } from 'src/app/services/native.service';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
-import { FooterComponent } from 'src/app/components/footer/footer.component';
 import { CachedImageComponent } from 'src/app/components/cached-image/cached-image.component';
+import { BackButtonComponent } from 'src/app/components/back-button/back-button.component';
 
 @Component({
     selector: 'app-text',
     templateUrl: './text.page.html',
     styleUrls: ['./text.page.scss'],
-    imports: [IonicModule, CommonModule, FooterComponent, CachedImageComponent],
+    imports: [IonicModule, CommonModule, CachedImageComponent, BackButtonComponent],
 })
 export class TextPage implements OnInit {
   content: ContentObject | null = null; 
+  categories: Array<ContentObject> = [];
   dataLoad: boolean = false;
 
   constructor(
@@ -29,27 +30,26 @@ export class TextPage implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.test_data();
-  }
+    this.route.paramMap.subscribe(async params => {
+        const id = parseInt(params.get('id') || '0', 10);
+        if (id) {
+            await this.loadContent(id);
+        }
+    });
+}
 
   /*ionViewWillEnter() {
     const id_content = parseInt(this.route.snapshot.paramMap.get('id') || '1', 10);
     this.getData(id_content);
   }*/
 
-  async test_data(){
-    try {
-        let contentData = await this.contentCtrl.getContent(602);
-        console.log("DATA: ", contentData);
-        
-        if (contentData) {
-          this.content = contentData;  // Assign it as an object, not an array
-        }
-
-        this.dataLoad = true;
-    } catch (error) {
-        console.error("Error fetching content:", error);
-    }
-}
-  
+    async loadContent(id: number) {
+      try {
+          this.content = await this.contentCtrl.getContent(id);
+          console.log("Loaded content:", this.content);
+          this.dataLoad = true;
+      } catch (error) {
+          console.error("Error fetching content:", error);
+      }
+  }
 }

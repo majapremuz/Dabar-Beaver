@@ -3,36 +3,36 @@
     <img src="assets/menu.png" alt="menu icon" class="menu-button">
   </ion-menu-button>
 
+  <app-back-button></app-back-button>
+
   <div class="game-container">
-    <ion-title>{{  questionnaireName }}</ion-title>
+    <h1>{{  questionnaireName }}</h1>
+    
     <div *ngIf="questions.length > 0 && !quizOver" class="question-container">
       <h2>{{ questions[currentQuestionIndex].question }}</h2>
   
       <ion-list lines="none">
         <ion-item *ngFor="let option of questions[currentQuestionIndex].options">
-          <ion-button expand="full" (click)="answerQuestion(option)">
-            {{ option }}
+          <ion-button  (click)="answerQuestion(option)" class="option-button">
+            <img src="assets/menu.png" alt="menu icon" class="card-image">
+            <p class="option-text">{{ option }}</p>
           </ion-button>
         </ion-item>
       </ion-list>
     </div>
 
     <div *ngIf="quizOver" class="quiz-over">
-      <h2 class="ion-text-center">Kraj kviza!</h2>
+      <h2 class="ion-text-center" class="quiz-over-title">Kraj kviza!</h2>
       <p>Vaš rezultat: {{ score }}/{{ questions.length }}</p>
 
-      <ion-card (click)="restartQuiz()">
-        <ng-container>
+      <ion-item>
+        <ion-button  (click)="restartQuiz()" class="option-button">
           <img src="assets/menu.png" alt="menu icon" class="card-image">
-          <p>
-            IGRAJ PONOVNO
-          </p>
-        </ng-container>
-      </ion-card>
+          <p class="option-text">IGRAJ PONOVNO</p>
+        </ion-button>
+      </ion-item>
 
     </div>
 
-    <img src="assets/logotipi.jpeg" alt="logotipi" class="logotipi">
   </div>
-  <app-footer></app-footer>
 </ion-content>
