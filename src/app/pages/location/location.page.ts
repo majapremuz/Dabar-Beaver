@@ -8,6 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { trigger, transition, useAnimation, state, style, keyframes, animate } from '@angular/animations';
 import { BackButtonComponent } from 'src/app/components/back-button/back-button.component';
+import { c } from 'vite/dist/node/moduleRunnerTransport.d-CXw_Ws6P';
 
 
 @Component({
@@ -196,9 +197,14 @@ export class LocationPage implements OnInit {
 
   async getMyLocation() {
     try {
-      let position = await this.nativeCtrl.getCurrentPosition();
-      let lat = position.coords.latitude;
-      let lng = position.coords.longitude;
+      let position = await this.nativeCtrl.getPosition();
+      let lat = 0;
+      let lng = 0;
+
+      if(position != false){
+        lat = position['coords']['latitude'];
+        lng = position['coords']['longitude'];
+      }
       this.has_my_location = true;
   
       await this.calculateLocation(lat, lng);

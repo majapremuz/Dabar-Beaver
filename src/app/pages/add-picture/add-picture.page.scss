@@ -128,7 +128,7 @@ ion-menu-button {
 
 
 //media query 
-@media (min-width: 360px) {
+@media (min-width: 350px) {
   .img-container {
     padding: 2rem;
   }
@@ -139,6 +139,24 @@ ion-menu-button {
 .image-input {
   padding: 4rem;
 }
+ion-label {
+  color: #a3622a;
+  font-weight: 900;
+  position: relative;
+  right: 4rem;
+  top: 0rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+ion-textarea {
+  padding-bottom: 3.5rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
 }
 @media (min-width: 800px) {
   ion-menu-button {
