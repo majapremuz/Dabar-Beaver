@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { Capacitor } from '@capacitor/core';
 import { Geolocation } from '@capacitor/geolocation';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -77,7 +78,7 @@ export class AddPicturePage {
   }*/
 
     async getPhoto(sourceType: CameraSource) {
-      if(this.platform.is('capacitor') == true){
+      if (Capacitor.isNativePlatform()) {
         const image = await Camera.getPhoto({
           quality: 90,
           allowEditing: true,
