@@ -11,6 +11,9 @@ import { BackButtonComponent } from 'src/app/components/back-button/back-button.
 import { ActionSheetController } from '@ionic/angular';
 import { DataService } from 'src/app/services/data.service';
 import { Platform } from '@ionic/angular';
+import { Capacitor } from '@capacitor/core';
+import { ControllerService } from 'src/app/services/controller.service';
+import { NativeService } from 'src/app/services/native.service';
 
 @Component({
   selector: 'app-add-picture',
@@ -25,7 +28,6 @@ export class AddPicturePage {
   imageLoad: boolean = false;
   location = { lat: 0, lng: 0 };
   GOOGLE_API_KEY = environment.google_map_api;
-  nativeCtrl: any;
   CameraSource = CameraSource;
 
 
@@ -33,8 +35,9 @@ export class AddPicturePage {
     private http: HttpClient,
     private router: Router,
     private actionCtrl: ActionSheetController,
-    private dataCtrl: DataService,
-    private platform: Platform
+    private dataCtrl: ControllerService,
+    private platform: Platform,
+    private nativeCtrl: NativeService
   ) {}
 
   async openCamera(){
@@ -77,7 +80,7 @@ export class AddPicturePage {
   }*/
 
     async getPhoto(sourceType: CameraSource) {
-      if(this.platform.is('capacitor') == true){
+      if (Capacitor.isNativePlatform()) {
         const image = await Camera.getPhoto({
           quality: 90,
           allowEditing: true,
@@ -104,24 +107,10 @@ export class AddPicturePage {
       }
     }
 
-  // Get current GPS coordinates
-  async getLocation() {
-    try {
-      const coordinates = await Geolocation.getCurrentPosition();
-      this.location = {
-        lat: coordinates.coords.latitude,
-        lng: coordinates.coords.longitude,
-      };
-    } catch (error) {
-      console.error('Error getting location:', error);
-      alert('Failed to get location. Please ensure GPS is enabled.');
-    }
-  }
-
   async saveToServer(){
 
     // get attachment key
-    let attachment_key_response = await this.dataCtrl.postServer('https://ivanic-grad-dabar.versalink-api.com/api/multimedia/attachment_key',{company_id: environment.company_id})
+    let attachment_key_response = await this.dataCtrl.postServer('/api/multimedia/attachment_key&company_id=5',{})
     .catch(err => {return undefined;});
 
     console.log("attachment key:", attachment_key_response);
@@ -130,14 +119,15 @@ export class AddPicturePage {
       let attachment_key = attachment_key_response['data']['id'];
 
       // get location
-      let location = await this.nativeCtrl.getPosition();
+      let location = await this.nativeCtrl.getPosition(); 
+
       let coords = '';
       if(location != false){
         coords = location['coords']['latitude'] + ',' + location['coords']['longitude'];
       }
 
       // send image and get image id
-      let response_image = await this.dataCtrl.postServer('https://ivanic-grad-dabar.versalink-api.com/api/multimedia/multimedia_offline', {base_64: this.base64, company_id: environment.company_id})
+      let response_image = await this.dataCtrl.postServer('/api/multimedia/multimedia_offline', {base_64: this.base64, company_id: environment.company_id})
       .catch(err => {return undefined;});
 
       if(response_image != undefined && response_image?.['message'] == 'success' && attachment_key != ''){
@@ -150,7 +140,7 @@ export class AddPicturePage {
           company_id: environment.company_id
         };
 
-        let response_attachment = await this.dataCtrl.postServer('https://ivanic-grad-dabar.versalink-api.com/api/multimedia/attachment_v2', data_send);
+        let response_attachment = await this.dataCtrl.postServer('/api/multimedia/attachment_v2', data_send);
 
 
         // send report
@@ -162,7 +152,7 @@ export class AddPicturePage {
           data_2: coords
         };
 
-        let response_report = await this.dataCtrl.postServer('https://ivanic-grad-dabar.versalink-api.com/api/report/report_offline', sendReportData).catch(err => {return undefined;});
+        let response_report = await this.dataCtrl.postServer('/api/report/report_offline', sendReportData).catch(err => {return undefined;});
 
         if(response_report != undefined && response_report?.['message'] == 'success'){
           // success

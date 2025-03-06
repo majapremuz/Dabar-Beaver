@@ -27,15 +27,14 @@ export class NativeService {
     });
    }
 
-   async getCurrentPosition() {
-    try {
-      const coordinates = await Geolocation.getCurrentPosition({
-        enableHighAccuracy: true
-      });
+   async getPosition(){
+    try{
+      const coordinates = await Geolocation.getCurrentPosition({ enableHighAccuracy: true });
+
       return coordinates;
-    } catch (error) {
-      console.error('Error getting current position:', error);
-      throw error;
     }
-  }
+    catch(err){
+      return false;
+    }
+   }
 }
