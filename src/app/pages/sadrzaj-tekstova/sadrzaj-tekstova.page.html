@@ -6,6 +6,7 @@
   <app-back-button></app-back-button>
 
   <div class="container">
+    <h1>Upoznajte dabrove</h1>
     <ion-list *ngIf="categories.length > 0" lines="none">
       <ion-item *ngFor="let content of categories">
           <ion-button expand="full" (click)="openContent(content.content_id)">

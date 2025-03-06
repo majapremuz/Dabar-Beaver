@@ -26,6 +26,8 @@ ion-card {
   width: 18%;
   padding-top: 1rem;
   background-color: #7f460d;
+  position: relative;
+  right: 0.5rem;
 }
 
 p {
@@ -64,6 +66,11 @@ ion-menu-button {
     width: 18%;
   }
 
+  .card-image {
+    top: 0.5rem;
+  }
+}
+
 @media (min-width: 1024px) {
   ion-menu-button {
     position: absolute;
@@ -72,5 +79,4 @@ ion-menu-button {
     height: 16vmin;
     width: 18%;
   }
-}
 }

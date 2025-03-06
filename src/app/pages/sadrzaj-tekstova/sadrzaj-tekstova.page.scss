@@ -17,6 +17,7 @@ ion-content {
       bottom: 0;
       right: 0;
       padding: 2rem 3rem 10rem;
+      box-shadow: 0px -5px 15px 0px rgba(0,0,0,0.75);
     }
   
     h1 {
@@ -28,11 +29,12 @@ ion-content {
 
     p {
         font-size: 0.8rem;
-        text-indent: 1.5rem;
-        position: relative;
-        top: 3px;
+        flex-grow: 1;
+        text-align: left;
+        text-align-last: left;
+        padding: 0 2.6rem;
+        margin: 0.9rem;
         text-transform: none;
-
       }
     
     ion-button {
@@ -44,6 +46,8 @@ ion-content {
         align-items: center;
         --background: #a3622a;
         --color: white;
+        text-align: justify;
+        text-justify: inter-word;
     }
     
     .menu-button {
@@ -67,11 +71,11 @@ ion-content {
     }
   
     .card-image {
-        width: 18%;
-        padding-top: 1rem;
-        background-color: #7f460d;
-        position: absolute;
-        left: -1rem;
+      width: 18%;
+      padding-top: 1rem;
+      background-color: #7f460d;
+      position: relative;
+      right: 0.5rem;
     }
   
      //media query 
@@ -99,14 +103,14 @@ ion-content {
       left: -1rem;
   }
 
-  p {
+  /*p {
     font-size: 0.7rem;
     text-indent: 1.5rem;
     position: relative;
     top: 3px;
     text-transform: none;
     padding: 0 2rem;
-  }
+  }*/
 
   }
   
@@ -119,9 +123,8 @@ ion-content {
       width: 18%;
     }
 
-    p {
-      font-size: 0.6rem;
-      padding: 0 1rem;
+    .card-image {
+      width: 10%;
     }
   }
   
@@ -135,7 +138,7 @@ ion-content {
     }
   
     p {
-      width: 90%;
+      margin: 0 2rem;
     }
   }
   

@@ -11,16 +11,11 @@
     <ion-label>Upišite izvještaj</ion-label>
     <ion-textarea [(ngModel)]="input_text"></ion-textarea>
 
-    <ion-card (click)="openCamera()">
-      <ng-container>
-        <img src="assets/menu.png" alt="menu icon" class="card-image">
-        <p>Dodavanje slike</p>
-      </ng-container>
-    </ion-card>
-
-    <div class="img-container">
-      <img *ngIf="base64" [src]="base64" class="user-image"/>
-    </div>
+    <!-- Clickable field for image selection -->
+     <ion-label>Dodavanje slike</ion-label>
+    <ion-item class="image-input" (click)="openCamera()" lines="none">
+      <img *ngIf="base64" [src]="base64" class="user-image-preview"/>
+    </ion-item>
 
     <ion-card (click)="saveToServer()">
       <ng-container>

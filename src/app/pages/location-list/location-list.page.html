@@ -9,16 +9,11 @@
     <h1>Popis lokacije</h1>
     <ion-list lines="none">
       <ng-container *ngFor="let location of locations">
-        <ion-item>
-          <p>{{ location.name }}</p>
-        </ion-item>
-
+        
         <ion-card  (click)="showOnMap(location.geoPoint)">
           <ng-container>
             <img src="assets/menu.png" alt="menu icon" class="card-image">
-            <p>
-              Lokacija na karti
-            </p>
+              <p>{{ location.name }}</p>
           </ng-container>
         </ion-card>
       </ng-container>

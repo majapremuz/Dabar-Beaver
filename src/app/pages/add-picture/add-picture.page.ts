@@ -25,7 +25,6 @@ export class AddPicturePage {
   imageLoad: boolean = false;
   location = { lat: 0, lng: 0 };
   GOOGLE_API_KEY = environment.google_map_api;
-  API_URL = `${environment.rest_server.protokol}${environment.rest_server.host}${environment.rest_server.functions.api}`;
   nativeCtrl: any;
   CameraSource = CameraSource;
 
@@ -40,22 +39,21 @@ export class AddPicturePage {
 
   async openCamera(){
     const actionSheet = await this.actionCtrl.create({
-      header: await this.dataCtrl.translateWord("PHOTO.SOURCE"),
       buttons: [
         {
-          text: await this.dataCtrl.translateWord("PHOTO.CAMERA"),
+          text: await this.dataCtrl.translateWord("Kamera"),
           handler: () => {  
             this.getPhoto(CameraSource.Camera);
           }  
         },
         {
-          text: await this.dataCtrl.translateWord("PHOTO.GALERY"),
+          text: await this.dataCtrl.translateWord("Galerija"),
           handler: () => {  
             this.getPhoto(CameraSource.Photos);
           }  
         },
         {
-          text: await this.dataCtrl.translateWord("PHOTO.CANCEL"),
+          text: await this.dataCtrl.translateWord("Otkaži"),
           role: 'cancel',
           handler: () => {  
             console.log('cancel');
@@ -66,7 +64,7 @@ export class AddPicturePage {
  
     await actionSheet.present();
   }
-  
+
   /*async takePicture() {
     const image = await Camera.getPhoto({
       quality: 90,
@@ -123,8 +121,10 @@ export class AddPicturePage {
   async saveToServer(){
 
     // get attachment key
-    let attachment_key_response = await this.dataCtrl.postServer('/api/multimedia/attachment_key',{company_id: environment.company_id})
+    let attachment_key_response = await this.dataCtrl.postServer('https://ivanic-grad-dabar.versalink-api.com/api/multimedia/attachment_key',{company_id: environment.company_id})
     .catch(err => {return undefined;});
+
+    console.log("attachment key:", attachment_key_response);
 
     if(attachment_key_response != undefined && attachment_key_response?.['message'] == 'success'){
       let attachment_key = attachment_key_response['data']['id'];
@@ -137,7 +137,7 @@ export class AddPicturePage {
       }
 
       // send image and get image id
-      let response_image = await this.dataCtrl.postServer('/api/multimedia/multimedia_offline', {base_64: this.base64, company_id: environment.company_id})
+      let response_image = await this.dataCtrl.postServer('https://ivanic-grad-dabar.versalink-api.com/api/multimedia/multimedia_offline', {base_64: this.base64, company_id: environment.company_id})
       .catch(err => {return undefined;});
 
       if(response_image != undefined && response_image?.['message'] == 'success' && attachment_key != ''){
@@ -150,7 +150,7 @@ export class AddPicturePage {
           company_id: environment.company_id
         };
 
-        let response_attachment = await this.dataCtrl.postServer('/api/multimedia/attachment_v2', data_send);
+        let response_attachment = await this.dataCtrl.postServer('https://ivanic-grad-dabar.versalink-api.com/api/multimedia/attachment_v2', data_send);
 
 
         // send report
@@ -162,7 +162,7 @@ export class AddPicturePage {
           data_2: coords
         };
 
-        let response_report = await this.dataCtrl.postServer('/api/report/report_offline', sendReportData).catch(err => {return undefined;});
+        let response_report = await this.dataCtrl.postServer('https://ivanic-grad-dabar.versalink-api.com/api/report/report_offline', sendReportData).catch(err => {return undefined;});
 
         if(response_report != undefined && response_report?.['message'] == 'success'){
           // success
