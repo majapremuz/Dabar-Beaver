@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { FormsModule } from '@angular/forms';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { Capacitor } from '@capacitor/core';
 import { Geolocation } from '@capacitor/geolocation';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
@@ -11,7 +12,6 @@ import { BackButtonComponent } from 'src/app/components/back-button/back-button.
 import { ActionSheetController } from '@ionic/angular';
 import { DataService } from 'src/app/services/data.service';
 import { Platform } from '@ionic/angular';
-import { Capacitor } from '@capacitor/core';
 import { ControllerService } from 'src/app/services/controller.service';
 import { NativeService } from 'src/app/services/native.service';
 

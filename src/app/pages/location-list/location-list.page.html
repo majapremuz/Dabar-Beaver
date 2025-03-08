@@ -5,15 +5,15 @@
 
   <app-back-button></app-back-button>
 
-  <div class="container" *ngIf="dataLoad">
+  <div class="container top_space" *ngIf="dataLoad">
     <h1>Popis lokacije</h1>
     <ion-list lines="none">
-      <ng-container *ngFor="let location of locations">
+      <ng-container *ngFor="let content of categories">
         
-        <ion-card  (click)="showOnMap(location.geoPoint)">
+        <ion-card  (click)="openContent(content.content_id)">
           <ng-container>
             <img src="assets/menu.png" alt="menu icon" class="card-image">
-              <p>{{ location.name }}</p>
+              <p>{{ content.content_name }}</p>
           </ng-container>
         </ion-card>
       </ng-container>

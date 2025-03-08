@@ -21,6 +21,10 @@ ion-content {
   box-shadow: 0px -5px 15px 0px rgba(0,0,0,0.75);
 }
 
+.ios .top_space {
+  margin-top: 40px;
+}
+
   h1 {
     font-size: 1.8rem;
     color: #a3622a;
@@ -120,15 +124,15 @@ ion-menu-button {
   overflow: hidden;
 }
 
-.user-image {
-  width: auto;
-  max-width: 100%;
-  max-height: 100%;
+.user-image-preview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 
 //media query 
-@media (min-width: 360px) {
+@media (min-width: 350px) {
   .img-container {
     padding: 2rem;
   }
@@ -139,6 +143,24 @@ ion-menu-button {
 .image-input {
   padding: 4rem;
 }
+ion-label {
+  color: #a3622a;
+  font-weight: 900;
+  position: relative;
+  right: 5rem;
+  top: 0rem;
+  font-size: 1rem;
+  margin-top: 1rem;
+}
+
+ion-textarea {
+  padding-bottom: 3.5rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+}
+
 }
 @media (min-width: 800px) {
   ion-menu-button {

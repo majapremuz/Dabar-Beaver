@@ -5,7 +5,7 @@
 
   <app-back-button></app-back-button>
 
-  <div class="game-container">
+  <div class="game-container top_space">
     <h1>{{  questionnaireName }}</h1>
     
     <div *ngIf="questions.length > 0 && !quizOver" class="question-container">
@@ -23,7 +23,7 @@
 
     <div *ngIf="quizOver" class="quiz-over">
       <h2 class="ion-text-center" class="quiz-over-title">Kraj kviza!</h2>
-      <p>Vaš rezultat: {{ score }}/{{ questions.length }}</p>
+      <p class="rezultat">Vaš rezultat: {{ score }}/{{ questions.length }}</p>
 
       <ion-item>
         <ion-button  (click)="restartQuiz()" class="option-button">
