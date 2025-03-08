@@ -22,6 +22,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/location/location.module').then( m => m.LocationPageModule)
   },
   {
+    path: 'Lokacije na karti',
+    loadChildren: () => import('./pages/location/location.module').then( m => m.LocationPageModule)
+  },
+  {
     path: 'Provjeri znanje',
     loadChildren: () => import('./pages/quiz/quiz.module').then( m => m.QuizPageModule)
   },
