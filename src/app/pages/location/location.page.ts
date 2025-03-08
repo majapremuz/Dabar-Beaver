@@ -95,25 +95,29 @@ export class LocationPage implements OnInit {
   }
 
   async ngAfterViewInit() {
+    await this.initPage(45.6830215, 16.4049789, 10); // ivanic grad lokacija
+    await this.getData();
+    await this.getMyLocation();
+
+
     this.route.queryParams.subscribe(async params => {
-      console.log('Query Params:', params);
+      if(params?.['lat'] != null){
         let lat = params['lat'] ? parseFloat(params['lat']) : 46;
         let lng = params['lng'] ? parseFloat(params['lng']) : 16;
-        let zoom = params['lat'] ? 15 : 10;
+        let zoom = 13;
 
         // Initialize map at given location
-        await this.initPage(lat, lng, zoom);
-
+        const location = new this.googleMaps.LatLng(lat, lng);
+        this.centerMap(location,zoom);
+        
         // Check if a new location is searched and add a red pin
         if (params['lat'] && params['lng']) {
           console.log("Location Name:", params['locationName']);
-            this.addRedMarker(lat, lng);
+          //this.addRedMarker(lat, lng);
         }
+      }
     });
-
-    await this.getData();
-    await this.getMyLocation();
-}
+  }
 
   
 

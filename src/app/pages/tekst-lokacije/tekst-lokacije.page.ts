@@ -66,7 +66,7 @@ export class TekstLokacijePage implements OnInit {
 }
 
 showOnMap(location: GeoPointObject) {
-    this.router.navigateByUrl(`/Lokacije na karti/${location.lat},${location.lng}`);
+    this.router.navigateByUrl(`/Lokacije na karti?lat=${location.lat}&lng=${location.lng}`);
 }
 
 }
