@@ -1,7 +1,7 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'io.ionic.beaverGame',
+  appId: 'com.beaverGame.prolink',
   appName: 'Dabar-Beaver',
   webDir: 'www'
 };

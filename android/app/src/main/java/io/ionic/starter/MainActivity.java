@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package com.beaverGame.prolink;
 
 import com.getcapacitor.BridgeActivity;
 

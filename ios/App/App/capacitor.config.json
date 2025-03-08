@@ -1,6 +1,6 @@
 {
-	"appId": "io.ionic.beaverGame",
-	"appName": "LIFE BEAVER",
+	"appId": "com.beaverGame.prolink",
+	"appName": "Dabar-Beaver",
 	"webDir": "www",
 	"packageClassList": [
 		"AppPlugin",
