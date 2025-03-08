@@ -1,24 +1,32 @@
 <ion-content class="ion-padding">
  <!--<app-cached-image [src]="url_example"></app-cached-image>-->
-<div class="container">
+<div class="container top_space">
 
   <ion-menu-button>
     <img src="assets/menu.png" alt="menu icon" class="menu-button">
   </ion-menu-button> 
 
   <div class="categories-container" *ngIf="dataLoad">
-    <ion-card  *ngFor="let category of categories" (click)="openCategory(category.content_name)">
-      <ng-container>
-        <img src="assets/menu.png" alt="menu icon" class="card-image">
-        <p>
-          {{ category.content_name }}
-        </p>
-      </ng-container>
-    </ion-card>
+    <div class="categories-container">
+      <ion-card  *ngFor="let category of categories" (click)="openCategory(category.content_name)">
+        <ng-container>
+          <img src="assets/menu.png" alt="menu icon" class="card-image">
+          <p>
+            {{ category.content_name }}
+          </p>
+        </ng-container>
+      </ion-card>
+    </div>
   </div>
   
-  
-
+  <div class="logotipi">
+    <img src="assets/1. LIFE logo.png" alt="life logo" class="logotipi-img">
+    <img src="assets/2. BEAVER z napisom in Life.png" alt="beaver z natpisom life logo" class="logotipi-img">
+    <img src="assets/lutra.jpg" alt="lutra logo" class="logotipi-img">
+    <img src="assets/Fakultet šumarstva.png" alt="fakultet šumarstva logo" class="logotipi-img">
+    <img src="assets/GIS logo.jpg" alt="gis logo" class="logotipi-img">
+    <img src="assets/Muzej logo.png" alt="muzej logo" class="logotipi-img">
+  </div>
   
 </div>
 </ion-content>

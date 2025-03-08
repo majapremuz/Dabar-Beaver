@@ -11,13 +11,17 @@ ion-button {
   
   .back-icon {
     filter: invert(100%) sepia(0%) saturate(7452%) hue-rotate(141deg) brightness(115%) contrast(98%);
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    transform: translate(-50%, -50%);
   }
 
 
   @media (min-width: 800px) {
     ion-button {
       position: absolute;
-      top: 3rem;
+      top: 5rem;
       left: 2rem;
       height: 16vmin;
       width: 18%;
@@ -26,8 +30,8 @@ ion-button {
   @media (min-width: 1024px) {
     ion-button {
       position: absolute;
-      top: 3rem;
-      left: 8rem;
+      top: 5rem;
+      left: 6rem;
       height: 16vmin;
       width: 18%;
     }

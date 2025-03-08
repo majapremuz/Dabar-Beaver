@@ -10,6 +10,14 @@ ion-content {
   height: 100%;
 }
 
+.ios .top_space {
+  margin-top: 40px;
+}
+
+.categories-container {
+  margin-top: 5rem;
+}
+
 ion-card {
   width: 100%;
   height: 10vmin;
@@ -29,6 +37,27 @@ ion-card {
   position: relative;
   right: 0.5rem;
 }
+
+.logotipi {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  padding: 0.5rem;
+  margin-top: 2rem;
+  background-color: white;
+  width: 110vmin;
+  overflow: hidden;
+}
+
+.logotipi-img {
+  height: auto;
+  width: auto;
+  max-height: 12vmin;
+  max-width: 12vmin;
+}
+
 
 p {
   font-size: 1.4rem;

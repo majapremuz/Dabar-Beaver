@@ -21,6 +21,10 @@ ion-content {
   box-shadow: 0px -5px 15px 0px rgba(0,0,0,0.75);
 }
 
+.ios .top_space {
+  margin-top: 40px;
+}
+
   h1 {
     font-size: 1.8rem;
     color: #a3622a;
@@ -143,7 +147,7 @@ ion-label {
   color: #a3622a;
   font-weight: 900;
   position: relative;
-  right: 4rem;
+  right: 5rem;
   top: 0rem;
   font-size: 1rem;
   margin-top: 1rem;

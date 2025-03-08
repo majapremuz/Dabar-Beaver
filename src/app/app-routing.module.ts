@@ -18,7 +18,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/location/location.module').then( m => m.LocationPageModule)
   },
   {
-    path: 'Lokacije na karti',
+    path: 'Lokacije na karti/:lokacije',
     loadChildren: () => import('./pages/location/location.module').then( m => m.LocationPageModule)
   },
   {
@@ -48,6 +48,10 @@ const routes: Routes = [
   {
     path: 'Poveznice',
     loadChildren: () => import('./pages/sadrzaj-poveznice/sadrzaj-poveznice.module').then( m => m.SadrzajPoveznicePageModule)
+  },
+  {
+    path: 'tekst-lokacije/:id',
+    loadChildren: () => import('./pages/tekst-lokacije/tekst-lokacije.module').then( m => m.TekstLokacijePageModule)
   },
 ];
 

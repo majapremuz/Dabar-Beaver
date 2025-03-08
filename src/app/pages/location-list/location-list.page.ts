@@ -21,9 +21,11 @@ interface LocationWithGeo {
   imports: [IonicModule, CommonModule, BackButtonComponent]
 })
 export class LocationListPage implements OnInit {
-  locations: LocationWithGeo[] = [];  // Use the new interface
-  content!: ContentObject;
+  locations: LocationWithGeo[] = []; 
   dataLoad: boolean = false;
+  translate: any = [];
+  categories: Array<ContentObject> = [];
+  content: ContentObject | null = null; 
 
   constructor(
     private router: Router,
@@ -40,16 +42,9 @@ export class LocationListPage implements OnInit {
       const categories_new = await this.contentCtrl.getCategoryContent(599); 
       console.log("location NEW", categories_new);
 
-      this.locations = categories_new.map(category => {
-        const geoPoint = new GeoPointObject();
-        geoPoint.create(category.content_location.lat, category.content_location.lng);
-        
-        // Return an object that contains both the name and geoPoint
-        return {
-          name: category.content_name,
-          geoPoint: geoPoint
-        };
-      });
+      if (categories_new && categories_new.length > 0) {
+        this.categories = categories_new;
+      }
 
       this.dataLoad = true;
     } catch (error) {
@@ -57,7 +52,12 @@ export class LocationListPage implements OnInit {
     }
   }
 
-  showOnMap(location: GeoPointObject) {
-    this.router.navigateByUrl('/Lokacije na karti/' + location.getString());
+  /*showOnMap(location: GeoPointObject) {
+    this.router.navigateByUrl('/tekst-lokacije/' + location.getString());
+  }*/
+
+  openContent(id: number) {
+    this.router.navigateByUrl('/tekst-lokacije/' + id);
   }
+
 }
