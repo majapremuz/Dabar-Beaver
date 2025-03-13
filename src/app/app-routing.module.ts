@@ -22,7 +22,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/location/location.module').then( m => m.LocationPageModule)
   },
   {
-    path: 'Lokacije na karti',
+    path: 'Potraži dabra na karti',
     loadChildren: () => import('./pages/location/location.module').then( m => m.LocationPageModule)
   },
   {
@@ -34,11 +34,11 @@ const routes: Routes = [
     loadChildren: () => import('./pages/text/text.module').then( m => m.TextPageModule)
   },
   {
-    path: 'Popis lokacija',
+    path: 'Popis zabilježenih lokacija',
     loadChildren: () => import('./pages/location-list/location-list.module').then( m => m.LocationListPageModule)
   },
   {
-    path: 'Pošalji sliku ili lokaciju',
+    path: 'Pošalji dabrov trag',
     loadChildren: () => import('./pages/add-picture/add-picture.module').then( m => m.AddPicturePageModule)
   },
   {

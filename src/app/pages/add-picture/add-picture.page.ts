@@ -11,9 +11,11 @@ import { Router } from '@angular/router';
 import { BackButtonComponent } from 'src/app/components/back-button/back-button.component';
 import { ActionSheetController } from '@ionic/angular';
 import { DataService } from 'src/app/services/data.service';
+import { ContentObject } from 'src/app/model/content';
 import { Platform } from '@ionic/angular';
 import { ControllerService } from 'src/app/services/controller.service';
 import { NativeService } from 'src/app/services/native.service';
+
 
 @Component({
   selector: 'app-add-picture',
@@ -29,6 +31,10 @@ export class AddPicturePage {
   location = { lat: 0, lng: 0 };
   GOOGLE_API_KEY = environment.google_map_api;
   CameraSource = CameraSource;
+  categories: Array<ContentObject> = [];
+  content: ContentObject | null = null;
+  categoryName: string = '';
+  dataLoad: boolean = false;
 
 
   constructor(
@@ -37,7 +43,8 @@ export class AddPicturePage {
     private actionCtrl: ActionSheetController,
     private dataCtrl: ControllerService,
     private platform: Platform,
-    private nativeCtrl: NativeService
+    private nativeCtrl: NativeService,
+    private contentCtrl: DataService,
   ) {}
 
   async openCamera(){

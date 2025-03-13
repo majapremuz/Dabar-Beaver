@@ -99,7 +99,7 @@ export class HomePage {
 
     // get data from server
     let data = await this.dataCtrl.getServer(url, true, 20).catch(err => {
-      console.log("DATA: ", data)
+      console.log("DATA home: ", data)
       this.dataCtrl.parseErrorMessage(err).then(message => {
         this.dataCtrl.showToast(message.message, message.type);
 
@@ -127,9 +127,10 @@ export class HomePage {
 
   }
 
-  openCategory(categoryName: string) {
+openCategory(categoryName: string) {
     this.router.navigateByUrl(categoryName);
 }
+
 
   async initTranslate(){
     this.translate['test_string'] = await this.dataCtrl.translateWord("TEST.STRING");

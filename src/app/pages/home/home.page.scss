@@ -60,10 +60,10 @@ ion-card {
 
 
 p {
-  font-size: 1.4rem;
-  text-indent: 0.8rem;
-  position: relative;
-  top: 3px;
+  font-size: 1.2rem;
+  flex-grow: 1;
+  text-align: left;
+  text-transform: none;
 }
 
 .menu-button {
