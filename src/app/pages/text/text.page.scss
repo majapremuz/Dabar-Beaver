@@ -13,6 +13,7 @@ ion-content {
     flex-direction: column;
     z-index: 1;
     overflow-y: auto;
+    overflow-x: hidden;
     position: absolute;
     bottom: 0;
     right: 0;
@@ -108,7 +109,9 @@ ion-content {
   }
 
   p {
-    width: 90%;
+    max-width: 90%;
+    text-align: center;
+    word-wrap: break-word;
   }
 }
 }
