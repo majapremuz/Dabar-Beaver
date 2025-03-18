@@ -10,8 +10,19 @@
   <div class="container top_space" *ngIf="dataLoad">
     <h1>Posjećene lokacije</h1>
 
-    <h2>Ukupni broj lokacija:</h2>
-    <p class="location-number">{{ categories.length }}</p>
+    <div class="location-numbers">
+      <div class="location-num-container">
+        <h2 class="ukupan-broj-lokacija">Ukupni broj lokacija:</h2>
+        <p class="location-number">{{ categories.length }}</p>
+      </div>
+    
+
+    <div class="location-num-container">
+      <h2 class="ukupan-broj-lokacija">Ukupan broj posjećenih lokacija:</h2> 
+      <p class="location-number total">{{ visitedLocations.length }}</p>
+    </div>
+    
+    </div>
 
     <h2>Posjećene lokacije:</h2>
     <p *ngIf="visitedLocations.length === 0" class="info-text">
@@ -30,9 +41,6 @@
         </ion-card>
       </li>
     </ol>
-
-    <h2 class="ukupan-broj-title">Ukupan broj posjećenih lokacija:</h2> 
-      <p class="location-number total">{{ visitedLocations.length }}</p>
     
     </div>
   

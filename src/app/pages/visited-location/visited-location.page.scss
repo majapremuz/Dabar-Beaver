@@ -32,10 +32,10 @@ ion-content {
       text-align: center;
     }
 
-    .ukupan-broj-title {
-      font-size: 1.3rem;
+    .ukupan-broj-lokacija {
+      font-size: 1rem;
     }
-    
+
     .info-text,
     li {
       font-size: 1rem;
@@ -47,13 +47,23 @@ ion-content {
     .location-number {
       font-size: 1.5rem;
       color: #a3622a;
+      position: relative;
+      left: 20%;
     }
 
     .total {
       background-color: #a3622a;
       color: white;
-      padding: 1rem;
+      width: 30%;
       text-align: center;
+    }
+
+    .location-numbers {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      left: 10%;
     }
     
     ion-button {
@@ -150,6 +160,12 @@ ion-content {
       height: 16vmin;
       width: 18%;
     }
+
+    .location-numbers {
+      gap: 5rem;
+    }
+
+  }
   
   @media (min-width: 1024px) {
     ion-menu-button {
@@ -165,8 +181,16 @@ ion-content {
       text-align: center;
       word-wrap: break-word;
     }
+
+    .location-numbers {
+      left: 0;
+    }
+
+    ol {
+      left: 30%;
+    }
   }
-  }
+
   
   
   
