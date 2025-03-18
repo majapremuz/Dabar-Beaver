@@ -13,13 +13,14 @@ ion-content {
       flex-direction: column;
       z-index: 1;
       overflow-y: auto;
+      overflow-x: hidden;
       position: absolute;
       bottom: 0;
       right: 0;
       padding: 2rem 3rem 10rem;
       box-shadow: 0px -5px 15px 0px rgba(0,0,0,0.75);
     }
-
+  
     .ios .top_space {
       margin-top: 40px;
     }
@@ -31,27 +32,42 @@ ion-content {
       text-align: center;
     }
 
-    p {
-        font-size: 0.8rem;
-        flex-grow: 1;
-        text-align: left;
-        text-align-last: left;
-        padding: 0 2.6rem;
-        margin: 0.9rem;
-        text-transform: none;
-      }
+    .ukupan-broj-title {
+      font-size: 1.3rem;
+    }
+    
+    .info-text,
+    li {
+      font-size: 1rem;
+      flex-grow: 1;
+      text-align: left;
+      text-transform: none;
+    }
+
+    .location-number {
+      font-size: 1.5rem;
+      color: #a3622a;
+    }
+
+    .total {
+      background-color: #a3622a;
+      color: white;
+      padding: 1rem;
+      text-align: center;
+    }
     
     ion-button {
-        width: 80vmin;
-        height: auto;
-        margin: 0.5rem 0;
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        --background: #a3622a;
-        --color: white;
-        text-align: justify;
-        text-justify: inter-word;
+    width: 100%;
+    height: 10vmin;
+    margin: 0.5rem 0;
+    padding: 1rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    --background: #a3622a;
+    --color: white;
+    font-weight: 900;
+    --box-shadow: none;
     }
     
     .menu-button {
@@ -74,6 +90,30 @@ ion-content {
       --border-radius: 50%;
     }
   
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+
+    ol {
+      list-style-type: none;
+      position: relative;
+      left: 40%;
+      transform: translate(-50%, 0);
+    }
+
+    ion-card {
+      width: 100%;
+      height: 10vmin;
+      margin: 0.5rem 0;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      background-color: #a3622a;
+      color: white;
+      padding: 1.5rem 0;
+    }
+    
     .card-image {
       width: 18%;
       padding-top: 1rem;
@@ -81,6 +121,7 @@ ion-content {
       position: relative;
       right: 0.5rem;
     }
+    
   
      //media query 
   @media (min-width: 360px) {
@@ -99,23 +140,6 @@ ion-content {
       top: 3rem;
       right: 1rem;
     }
-    .card-image {
-      width: 20%;
-      padding-top: 1rem;
-      background-color: #7f460d;
-      position: absolute;
-      left: -1rem;
-  }
-
-  /*p {
-    font-size: 0.7rem;
-    text-indent: 1.5rem;
-    position: relative;
-    top: 3px;
-    text-transform: none;
-    padding: 0 2rem;
-  }*/
-
   }
   
   @media (min-width: 800px) {
@@ -126,11 +150,6 @@ ion-content {
       height: 16vmin;
       width: 18%;
     }
-
-    .card-image {
-      width: 10%;
-    }
-  }
   
   @media (min-width: 1024px) {
     ion-menu-button {
@@ -142,12 +161,11 @@ ion-content {
     }
   
     p {
-      margin: 0 2rem;
+      max-width: 90%;
+      text-align: center;
+      word-wrap: break-word;
     }
-
-    .card-image {
-      width: 8%;
-    }
+  }
   }
   
   

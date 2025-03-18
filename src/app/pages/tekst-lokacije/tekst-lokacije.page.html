@@ -5,6 +5,7 @@
   </ion-menu-button>
   
   <app-back-button></app-back-button>
+  <app-nagrada-btn></app-nagrada-btn>
 
   <div class="container top_space" *ngIf="dataLoad && content">
     <h1>{{ content.content_name }}</h1>
@@ -25,12 +26,21 @@
             </div>
           </div>
         </div>
+
         <ion-card *ngFor="let location of locations" (click)="showOnMap(location.geoPoint)">
           <ng-container>
             <img src="assets/menu.png" alt="menu icon" class="card-image">
             <p class="location-text">Lokacija na karti</p>
           </ng-container>
         </ion-card>
+
+        <ion-card *ngFor="let location of locations" (click)="confirmLocation(location)">
+          <ng-container>
+            <img src="assets/menu.png" alt="menu icon" class="card-image">
+            <p class="location-text">Potvrdi lokaciju</p>
+          </ng-container>
+        </ion-card>
+
       </ng-container>
     </div>
   </div>

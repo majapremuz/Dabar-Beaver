@@ -9,12 +9,13 @@ import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
 import { CachedImageComponent } from 'src/app/components/cached-image/cached-image.component';
 import { BackButtonComponent } from 'src/app/components/back-button/back-button.component';
+import { NagradaBtnComponent } from 'src/app/components/nagrada-btn/nagrada-btn.component';
 
 @Component({
     selector: 'app-text',
     templateUrl: './text.page.html',
     styleUrls: ['./text.page.scss'],
-    imports: [IonicModule, CommonModule, CachedImageComponent, BackButtonComponent],
+    imports: [IonicModule, CommonModule, CachedImageComponent, BackButtonComponent, NagradaBtnComponent],
 })
 export class TextPage implements OnInit {
   content: ContentObject | null = null; 

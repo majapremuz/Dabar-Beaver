@@ -119,8 +119,8 @@ export class AppComponent {
 
 
   openCategory(categoryName: string) {
-    this.router.navigateByUrl(categoryName);
-    console.log('open category', categoryName);
+    const encodedCategory = encodeURIComponent(categoryName);
+    this.router.navigateByUrl(encodedCategory);
 }
 
 }

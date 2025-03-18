@@ -8,6 +8,7 @@ import { NativeService } from 'src/app/services/native.service';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';  
 import { BackButtonComponent } from 'src/app/components/back-button/back-button.component';
+import { NagradaBtnComponent } from 'src/app/components/nagrada-btn/nagrada-btn.component';
 
 
 @Component({
@@ -15,7 +16,7 @@ import { BackButtonComponent } from 'src/app/components/back-button/back-button.
     templateUrl: './poveznice.page.html',
     styleUrls: ['./poveznice.page.scss'],
     standalone: true,
-    imports: [IonicModule, CommonModule, BackButtonComponent]
+    imports: [IonicModule, CommonModule, BackButtonComponent, NagradaBtnComponent]
 })
 export class PoveznicePage implements OnInit {
   content: ContentObject[] = [];

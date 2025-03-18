@@ -6,6 +6,8 @@
     <img src="assets/menu.png" alt="menu icon" class="menu-button">
   </ion-menu-button> 
 
+  <app-nagrada-btn></app-nagrada-btn>
+
   <div class="categories-container" *ngIf="dataLoad">
     <div class="categories-container">
       <ion-card  *ngFor="let category of categories" (click)="openCategory(category.content_name)">

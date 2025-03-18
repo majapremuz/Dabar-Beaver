@@ -1,0 +1,39 @@
+<ion-content id="main-content" scroll-y="true">
+  
+  <ion-menu-button>
+    <img src="assets/menu.png" alt="menu icon" class="menu-button">
+  </ion-menu-button>
+  
+  <app-back-button></app-back-button>
+  <app-nagrada-btn></app-nagrada-btn>
+
+  <div class="container top_space" *ngIf="dataLoad">
+    <h1>Posjećene lokacije</h1>
+
+    <h2>Ukupni broj lokacija:</h2>
+    <p class="location-number">{{ categories.length }}</p>
+
+    <h2>Posjećene lokacije:</h2>
+    <p *ngIf="visitedLocations.length === 0" class="info-text">
+      Prilikom posjeta lokaciji potrebno je potvrditi dolazak na lokaciju putem gumba 
+      <strong>"Potvrdi lokaciju"</strong> na ekranu sa detaljima lokacije.
+    </p>
+    <ol>
+      <li *ngFor="let location of visitedLocations">
+        <ion-card>
+          <ng-container>
+            <img src="assets/menu.png" alt="menu icon" class="card-image">
+            <p>
+              {{ location }}
+            </p>
+          </ng-container>
+        </ion-card>
+      </li>
+    </ol>
+
+    <h2 class="ukupan-broj-title">Ukupan broj posjećenih lokacija:</h2> 
+      <p class="location-number total">{{ visitedLocations.length }}</p>
+    
+    </div>
+  
+</ion-content>

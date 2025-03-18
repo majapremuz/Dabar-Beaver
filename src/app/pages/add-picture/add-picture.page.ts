@@ -15,6 +15,7 @@ import { ContentObject } from 'src/app/model/content';
 import { Platform } from '@ionic/angular';
 import { ControllerService } from 'src/app/services/controller.service';
 import { NativeService } from 'src/app/services/native.service';
+import { NagradaBtnComponent } from 'src/app/components/nagrada-btn/nagrada-btn.component';
 
 
 @Component({
@@ -22,7 +23,7 @@ import { NativeService } from 'src/app/services/native.service';
   templateUrl: './add-picture.page.html',
   styleUrls: ['./add-picture.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, BackButtonComponent],
+  imports: [IonicModule, CommonModule, FormsModule, BackButtonComponent, NagradaBtnComponent],
 })
 export class AddPicturePage {
   input_text: string = '';

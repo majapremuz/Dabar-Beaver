@@ -8,7 +8,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { trigger, transition, useAnimation, state, style, keyframes, animate } from '@angular/animations';
 import { BackButtonComponent } from 'src/app/components/back-button/back-button.component';
-import { c } from 'vite/dist/node/moduleRunnerTransport.d-CXw_Ws6P';
+import { NagradaBtnComponent } from 'src/app/components/nagrada-btn/nagrada-btn.component';
 
 
 @Component({
@@ -16,7 +16,7 @@ import { c } from 'vite/dist/node/moduleRunnerTransport.d-CXw_Ws6P';
   templateUrl: './location.page.html',
   styleUrls: ['./location.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, BackButtonComponent],
+  imports: [IonicModule, CommonModule, BackButtonComponent, NagradaBtnComponent],
   animations: [
     trigger('shakeit', [
         state('shakestart', style({

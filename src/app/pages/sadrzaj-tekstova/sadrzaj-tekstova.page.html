@@ -4,9 +4,10 @@
   </ion-menu-button>
   
   <app-back-button></app-back-button>
+  <app-nagrada-btn></app-nagrada-btn>
 
   <div class="container top_space">
-    <h1>Upoznajte dabrove</h1>
+    <h1>Upoznajmo dabra</h1>
     <ion-list *ngIf="categories.length > 0" lines="none">
       <ion-item *ngFor="let content of categories">
           <ion-button expand="full" (click)="openContent(content.content_id)">

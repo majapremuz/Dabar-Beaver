@@ -3,13 +3,14 @@ import { CommonModule } from '@angular/common';
 import { IonicModule } from '@ionic/angular';
 import { QuestionnaireService } from 'src/app/services/questionnaire.service';
 import { BackButtonComponent } from 'src/app/components/back-button/back-button.component';
+import { NagradaBtnComponent } from 'src/app/components/nagrada-btn/nagrada-btn.component';
 
 @Component({
   selector: 'app-quiz',
   templateUrl: './quiz.page.html',
   styleUrls: ['./quiz.page.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, BackButtonComponent]
+  imports: [IonicModule, CommonModule, BackButtonComponent, NagradaBtnComponent],
 })
 export class QuizPage implements OnInit {
   questions: any[] = [];

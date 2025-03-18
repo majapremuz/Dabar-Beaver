@@ -46,7 +46,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/poveznice/poveznice.module').then( m => m.PoveznicePageModule)
   },
   {
-    path: 'Upoznajte dabrove',
+    path: 'Upoznajmo dabra',
     loadChildren: () => import('./pages/sadrzaj-tekstova/sadrzaj-tekstova.module').then( m => m.SadrzajTekstovaPageModule)
   },
   {
@@ -56,6 +56,14 @@ const routes: Routes = [
   {
     path: 'tekst-lokacije/:id',
     loadChildren: () => import('./pages/tekst-lokacije/tekst-lokacije.module').then( m => m.TekstLokacijePageModule)
+  },
+  {
+    path: 'Kako se zaštiti od dabra?',
+    loadChildren: () => import('./pages/zastita/zastita.module').then( m => m.ZastitaPageModule)
+  },
+  {
+    path: 'visited-location',
+    loadChildren: () => import('./pages/visited-location/visited-location.module').then( m => m.VisitedLocationPageModule)
   },
 ];
 

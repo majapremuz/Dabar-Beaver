@@ -45,10 +45,9 @@ ion-card {
   flex-wrap: wrap;
   gap: 1rem;
   padding: 0.5rem;
-  margin-top: 2rem;
+  margin: 2rem 0;
   background-color: white;
   width: 110vmin;
-  overflow: hidden;
 }
 
 .logotipi-img {
@@ -89,7 +88,7 @@ ion-menu-button {
 @media (min-width: 800px) {
   ion-menu-button {
     position: absolute;
-    top: 3rem;
+    top: 5.5rem;
     right: 2rem;
     height: 16vmin;
     width: 18%;
@@ -103,7 +102,7 @@ ion-menu-button {
 @media (min-width: 1024px) {
   ion-menu-button {
     position: absolute;
-    top: 3rem;
+    top: 5.5rem;
     right: 8rem;
     height: 16vmin;
     width: 18%;

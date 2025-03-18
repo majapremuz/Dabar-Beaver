@@ -7,11 +7,12 @@ import { ControllerService } from 'src/app/services/controller.service';
 import { ContentObject } from 'src/app/model/content';
 import { DataService } from 'src/app/services/data.service';
 import { Router } from '@angular/router';
+import { NagradaBtnComponent } from 'src/app/components/nagrada-btn/nagrada-btn.component';
 @Component({
   selector: 'app-sadrzaj-poveznica',
   templateUrl: './sadrzaj-poveznice.page.html',
   styleUrls: ['./sadrzaj-poveznice.page.scss'],
-  imports: [IonicModule, CommonModule, BackButtonComponent, CachedImageComponent]
+  imports: [IonicModule, CommonModule, BackButtonComponent, CachedImageComponent, NagradaBtnComponent],
 })
 export class SadrzajPoveznicePage implements OnInit {
   dataLoad: boolean = false;

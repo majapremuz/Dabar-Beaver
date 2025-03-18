@@ -5,13 +5,14 @@ import { ContentApiInterface, ContentObject } from 'src/app/model/content';
 import { ControllerService } from 'src/app/services/controller.service';
 import { Router } from '@angular/router';
 import { DataService } from 'src/app/services/data.service';
+import { NagradaBtnComponent } from 'src/app/components/nagrada-btn/nagrada-btn.component';
 
 @Component({
     selector: 'app-home',
     templateUrl: 'home.page.html',
     styleUrls: ['home.page.scss'],
     standalone: true,
-    imports: [IonicModule, CommonModule]
+    imports: [IonicModule, CommonModule, NagradaBtnComponent]
 })
 export class HomePage {
   dataLoad: boolean = false;
@@ -32,6 +33,7 @@ export class HomePage {
     // sa pvpm funkcijom dobivas sve root kategorije koje ti idu na home page
     // ovu funkciju ces imati samo na home page
     let categories = await this.contentCtrl.getRootContent();
+    console.log("MENU CATEGORIES", categories);
     this.categories = categories;
     // kad pojedinu kategoriju otvoris onda dobivas njezine kategorije i tekstove
     // sa ovom funkcijom samo prosljedis id od nje u funkciju
@@ -127,9 +129,11 @@ export class HomePage {
 
   }
 
-openCategory(categoryName: string) {
-    this.router.navigateByUrl(categoryName);
+  openCategory(categoryName: string) {
+    const encodedCategory = encodeURIComponent(categoryName);
+    this.router.navigateByUrl(encodedCategory);
 }
+
 
 
   async initTranslate(){
