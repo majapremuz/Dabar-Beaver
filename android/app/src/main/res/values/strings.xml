@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">Dabar-Beaver</string>
-    <string name="title_activity_main">Dabar-Beaver</string>
+    <string name="app_name">Beaver - dabar u Hrvatskoj</string>
+    <string name="title_activity_main">Beaver - dabar u Hrvatskoj</string>
     <string name="package_name">com.beaverGame.prolink</string>
     <string name="custom_url_scheme">com.beaverGame.prolink</string>
 </resources>
