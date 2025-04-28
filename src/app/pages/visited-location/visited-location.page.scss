@@ -131,7 +131,67 @@ ion-content {
       position: relative;
       right: 0.5rem;
     }
-    
+
+    .nagrada {
+      background-color: #a3612c;
+      color: white;
+      box-shadow: 0px 0px 5px 0px rgba(0,0,0,0.75);
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 999;
+      width: 90%;
+      padding: 0 0.5rem;
+    }
+  
+    .nagrada-title {
+      color: goldenrod;
+      font-size: 2rem;
+      text-shadow: 
+      2px 2px 0 white, 
+      2px -2px 0 white, 
+      -2px 2px 0 white, 
+      -2px -2px 0 white,
+       2px 0px 0 white, 
+       0px 2px 0 white, 
+       -2px 0px 0 white,
+        0px -2px 0 white;
+    }
+  
+    .nagrada-text {
+      text-align: center;
+    }
+  
+    .visitedAll {
+      font-size: 1.5rem;
+      margin: 3rem 0;
+      display: block;
+    }
+  
+    a {
+      text-decoration: none;
+      color: white;
+    }
+  
+    .contacts {
+      text-align: left;
+      display: block;
+      margin: 1rem 0 0 1rem;
+    }
+  
+    .close-button {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      --background: red;
+      width: 10%;
+      display: flex;
+      justify-content: center;
+      border-radius: none;
+    }
+  
+
   
      //media query 
   @media (min-width: 360px) {

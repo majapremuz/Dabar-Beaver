@@ -43,5 +43,48 @@
     </ol>
     
     </div>
-  
+
+    <div class="nagrada-container" *ngIf="showNagrada">
+      <div class="nagrada" *ngIf="dataLoad && visitedLocations.length === categories.length">
+        <ion-button (click)="closeNagrada()" class="close-button">X</ion-button>
+        <h1 class="nagrada-title">Čestitamo!</h1>
+        <p class="nagrada-text">
+          <strong class="visitedAll">
+            Posjetili ste sve lokacije!
+          </strong>
+          <br>
+         Za preuzimanje nagrade javite se u Muzej Ivanić-Grada 
+         <br>
+         <span class="contacts">
+          <a href="tel:0993258437">
+            <ion-icon name="call-outline"></ion-icon>
+            099 325 84 37
+          </a>
+          
+         <br>
+         <a href="mailto:info@muzejivanicgrada.hr" target="_blank">
+          <ion-icon name="mail-outline"></ion-icon>
+          info&#64;muzejivanicgrada.hr
+         </a>
+    
+        <br>
+        <a href="https://www.facebook.com/muzejivanicgrada/" target="_blank">
+          <ion-icon name="logo-facebook"></ion-icon>
+          https://www.facebook.com/muzejivanicgrada/
+        </a>
+        
+        <br>
+        <a href="https://www.instagram.com/muzej.ivanic.grada/" target="_blank">
+          <ion-icon name="logo-instagram"></ion-icon>
+          https://www.instagram.com/muzej.ivanic.grada/
+        </a>
+        
+         </span>   
+        </p>
+      </div>
+    </div>
+    
+
+    
+
 </ion-content>

@@ -23,6 +23,8 @@ export class VisitedLocationPage implements OnInit {
   locations: LocationWithGeo[] = []; 
   dataLoad: boolean = false;
   visitedLocations: string[] = [];
+  showNagrada: boolean = false;
+
 
   constructor(
     private contentCtrl: DataService,
@@ -41,13 +43,17 @@ export class VisitedLocationPage implements OnInit {
   
       if (categories_new && categories_new.length > 0) {
         this.categories = categories_new;
-        //this.locations = categories_new;
+        this.showNagrada = this.visitedLocations.length === categories_new.length;
       }
   
       this.dataLoad = true;
     } catch (error) {
       console.error("Error fetching locations:", error);
     }
+  }
+
+  closeNagrada() {
+    this.showNagrada = false;
   }
   
 

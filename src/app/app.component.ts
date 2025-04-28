@@ -1,4 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
+import { IonicModule } from '@ionic/angular';
 import { IonRouterOutlet, Platform } from '@ionic/angular';
 import { TranslateConfigService } from './services/translate-config.service';
 import { ControllerService } from './services/controller.service';
