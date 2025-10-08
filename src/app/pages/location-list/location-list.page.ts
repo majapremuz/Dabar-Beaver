@@ -61,4 +61,7 @@ export class LocationListPage implements OnInit {
     this.router.navigateByUrl('/tekst-lokacije/' + id);
   }
 
+  openMap() {
+    this.router.navigateByUrl('Potraži dabra na karti');
+  }
 }

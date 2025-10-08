@@ -509,7 +509,7 @@ export class LocationPage implements OnInit {
   async openText(id: number){
     this.closeModal();
     await this.dataCtrl.wait(300);
-    this.router.navigate(['/text', id]);
+    this.router.navigate(['/tekst-lokacije', id]);
   }
 
   openModal(type: string){
@@ -535,5 +535,7 @@ export class LocationPage implements OnInit {
   onWillDismiss(event: Event) {
     this.closeModal();
   }
+
+  
 
 }

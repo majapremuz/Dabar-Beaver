@@ -210,5 +210,8 @@ calculateDistance(lat1: number, lng1: number, lat2: number, lng2: number): numbe
   return R * c; // Distance in meters
 }
 
+openMap() {
+  this.router.navigateByUrl('Potraži dabra na karti');  
+}
 
 }

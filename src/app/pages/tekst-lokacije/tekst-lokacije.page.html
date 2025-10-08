@@ -1,8 +1,12 @@
-<ion-content id="main-content" scroll-y="true">
-  
+<ion-content id="main-content" scroll-y="true" [fullscreen]="true">
+
   <ion-menu-button>
     <img src="assets/menu.png" alt="menu icon" class="menu-button">
   </ion-menu-button>
+
+  <ion-button class="map-button" (click)="openMap()">
+    <img src="assets/white-map-pin.png" alt="map logo">
+  </ion-button>
   
   <app-back-button></app-back-button>
   <app-nagrada-btn></app-nagrada-btn>

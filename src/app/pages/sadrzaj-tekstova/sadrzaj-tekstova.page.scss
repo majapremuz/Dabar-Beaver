@@ -57,21 +57,28 @@ ion-content {
     .menu-button {
       background-color: transparent;
       max-width: 20vmin;
+      height: 20vmin;
       margin: auto;
       position: absolute;
       top: 65%;
-      left: 45%;
+      left: 40%;
       transform: translate(-50%, -50%);
     }
     
-    ion-menu-button {
+    ion-menu-button, 
+    .map-button {
       position: absolute;
       top: 3rem;
       right: 1rem;
-      height: 15vmin;
-      width: 18vmin;
+      height: 13vmin;
+      width: 13vmin;
       --background: #a3612c;
       --border-radius: 50%;
+    }
+
+    .map-button {
+      right: 37vmin;
+      top: 2.6rem;
     }
   
     .card-image {
@@ -107,24 +114,14 @@ ion-content {
       left: -1rem;
   }
 
-  /*p {
-    font-size: 0.7rem;
-    text-indent: 1.5rem;
-    position: relative;
-    top: 3px;
-    text-transform: none;
-    padding: 0 2rem;
-  }*/
-
   }
   
   @media (min-width: 800px) {
     ion-menu-button {
       position: absolute;
-      top: 5.5rem;
       right: 2rem;
-      height: 16vmin;
-      width: 18%;
+      height: 13vmin;
+      width: 13vmin;
     }
 
     .card-image {
@@ -135,10 +132,13 @@ ion-content {
   @media (min-width: 1024px) {
     ion-menu-button {
       position: absolute;
-      top: 5.5rem;
       right: 8rem;
-      height: 16vmin;
-      width: 18%;
+      height: 13vmin;
+      width: 13vmin;
+    }
+
+    .map-button {
+      right: 60vmin;
     }
   
     p {

@@ -61,5 +61,9 @@ async loadContent(id: number) {
   openLink(url: string) {
     window.open(url, '_blank');
 }
+
+openMap() {
+  this.router.navigateByUrl('Potraži dabra na karti');
+}
   
 }

@@ -53,4 +53,8 @@ export class TextPage implements OnInit {
           console.error("Error fetching content:", error);
       }
   }
+
+  openMap() {
+  this.router.navigateByUrl('Potraži dabra na karti');
+}
 }

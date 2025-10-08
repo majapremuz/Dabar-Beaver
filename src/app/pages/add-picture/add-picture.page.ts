@@ -172,4 +172,8 @@ export class AddPicturePage {
     this.input_text = '';
     this.imageLoad = false;
   }
+
+  openMap() {
+  this.router.navigateByUrl('Potraži dabra na karti');
+}
 }

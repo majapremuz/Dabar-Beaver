@@ -50,4 +50,8 @@ openContent(id: number) {
   this.router.navigateByUrl('/poveznice/' + id);
 }
 
+openMap() {
+  this.router.navigateByUrl('Potraži dabra na karti');
+}
+
 }

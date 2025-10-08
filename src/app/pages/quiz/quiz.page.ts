@@ -4,6 +4,7 @@ import { IonicModule } from '@ionic/angular';
 import { QuestionnaireService } from 'src/app/services/questionnaire.service';
 import { BackButtonComponent } from 'src/app/components/back-button/back-button.component';
 import { NagradaBtnComponent } from 'src/app/components/nagrada-btn/nagrada-btn.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiz',
@@ -19,7 +20,10 @@ export class QuizPage implements OnInit {
   score = 0;
   quizOver = false;
 
-  constructor(private questionCtrl: QuestionnaireService) {}
+  constructor(
+    private questionCtrl: QuestionnaireService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.loadQuizData();
@@ -79,4 +83,8 @@ export class QuizPage implements OnInit {
     this.score = 0;
     this.quizOver = false;
   }
+
+  openMap() {
+  this.router.navigateByUrl('Potraži dabra na karti');
+}
 }

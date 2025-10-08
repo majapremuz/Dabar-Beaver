@@ -7,6 +7,7 @@ import { GeoPointObject } from 'src/app/model/geo';
 import { BackButtonComponent } from 'src/app/components/back-button/back-button.component';
 import { VisitedLocationsService } from 'src/app/services/visited-locations.service';
 import { NagradaBtnComponent } from 'src/app/components/nagrada-btn/nagrada-btn.component';
+import { Router } from '@angular/router';
 interface LocationWithGeo {
   name: string;
   geoPoint: GeoPointObject;
@@ -29,6 +30,7 @@ export class VisitedLocationPage implements OnInit {
   constructor(
     private contentCtrl: DataService,
     private visitedLocationsService: VisitedLocationsService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -56,5 +58,8 @@ export class VisitedLocationPage implements OnInit {
     this.showNagrada = false;
   }
   
+  openMap() {
+    this.router.navigateByUrl('Potraži dabra na karti');
+  }
 
 }

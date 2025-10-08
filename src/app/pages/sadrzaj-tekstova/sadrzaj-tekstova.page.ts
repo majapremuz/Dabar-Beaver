@@ -50,4 +50,8 @@ openContent(id: number) {
   this.router.navigateByUrl('/text/' + id);
 }
 
+openMap() {
+  this.router.navigateByUrl('Potraži dabra na karti');
+}
+
 }

@@ -6,6 +6,7 @@ import { DataService } from 'src/app/services/data.service';
 import { BackButtonComponent } from 'src/app/components/back-button/back-button.component';
 import { CachedImageComponent } from 'src/app/components/cached-image/cached-image.component';
 import { NagradaBtnComponent } from 'src/app/components/nagrada-btn/nagrada-btn.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-zastita',
@@ -19,6 +20,7 @@ export class ZastitaPage implements OnInit {
   dataLoad: boolean = false;
   constructor(
     private contentCtrl: DataService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -37,5 +39,9 @@ export class ZastitaPage implements OnInit {
       console.error("Error fetching content:", error);
     }
   }
+
+  openMap() {
+  this.router.navigateByUrl('Potraži dabra na karti');
+}
 
 }
