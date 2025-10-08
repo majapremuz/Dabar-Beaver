@@ -134,7 +134,9 @@ export class HomePage {
     this.router.navigateByUrl(encodedCategory);
 }
 
-
+openMap() {
+  this.router.navigateByUrl('Potraži dabra na karti');
+}
 
   async initTranslate(){
     this.translate['test_string'] = await this.dataCtrl.translateWord("TEST.STRING");

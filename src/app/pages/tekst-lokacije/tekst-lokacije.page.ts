@@ -72,7 +72,7 @@ export class TekstLokacijePage implements OnInit {
 }
 
 showOnMap(location: GeoPointObject) {
-    this.router.navigateByUrl(`/Lokacije na karti?lat=${location.lat}&lng=${location.lng}`);
+    this.router.navigateByUrl(`/Potraži dabra na karti?lat=${location.lat}&lng=${location.lng}`);
 }
 
 /*async confirmLocation(location: LocationWithGeo) {

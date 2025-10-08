@@ -8,6 +8,10 @@
 
   <app-nagrada-btn></app-nagrada-btn>
 
+  <ion-button class="map-button" (click)="openMap()">
+    <img src="assets/white-map-pin.png" alt="map logo">
+  </ion-button>
+
   <div class="categories-container" *ngIf="dataLoad">
     <div class="categories-container">
       <ion-card  *ngFor="let category of categories" (click)="openCategory(category.content_name)">
