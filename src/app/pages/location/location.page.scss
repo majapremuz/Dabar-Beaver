@@ -1,9 +1,20 @@
+.map {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .container {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     height: 100%;
+    height: auto;
+    overflow-y: auto; 
+    max-height: 100%; 
   }
 
   .menu-button {
@@ -24,6 +35,27 @@
     width: 20%;
     --background: #a3612c;
     --border-radius: 50%;
+  }
+
+  ion-modal ion-content {
+  --overflow: auto;
+}
+
+
+  ion-modal {
+
+    h3 {
+      text-align: center;
+    }
+        ion-button {
+        --background: #a2612c;
+        --box-shadow: none;
+        --color: #000000;
+        margin: 1rem 0 0 3rem;
+        --border-radius: 5px;
+        text-transform: uppercase;
+        width: 70%;
+    }
   }
   
   @media (min-width: 800px) {

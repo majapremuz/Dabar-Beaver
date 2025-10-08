@@ -1,9 +1,94 @@
 <ion-content>
    
-  <div #map style="width: 100%; height: 100vh;"></div>
+  <div #map class="map"></div>
   <ion-menu-button>
     <img src="assets/menu.png" alt="menu icon" class="menu-button">
   </ion-menu-button>
+
+  <ion-button [@shakeit]="animationState" class="nearBtn" size="large" fill="outline" *ngIf="isNearMarker" (click)="openModal('near_marker')" color="primary">
+    <ion-icon slot="icon-only" name="pricetags-outline"></ion-icon>
+  </ion-button>
+
+  <ion-modal #modal [isOpen]="isModalOpen"  (willDismiss)="onWillDismiss($event)" [initialBreakpoint]="0.5" [breakpoints]="[0.25, 0.5, 1]" >
+
+
+    <ng-template>
+      <ion-content  *ngIf="modalType == 'click_marker'" class="ion-padding">
+
+        <div class="conteiner">
+
+          <h3>{{ modalMarker.objekt.content_name }}</h3>
+
+          <p *ngIf="modalMarker.objekt?.segments[0]?.segment_description">
+            {{ modalMarker.objekt.segments[0].segment_description }}
+          </p>
+
+          <div class="button-conteiner">
+            <ion-button (click)="openText(modalMarker.objekt.content_id)">
+              Saznaj više
+            </ion-button>
+            <ion-button *ngIf="has_my_location" (click)="direction(modalMarker.objekt.content_id)">
+              Navigiraj do točke interesa
+            </ion-button>
+          </div>
+
+          <div *ngIf="!navigationClear">
+            <h3>Upute do točke interesa</h3>
+            <p class="udaljenost">Udaljenost {{ navigation_total_distance }} ({{ navigation_total_time }})</p>
+            <ion-list >
+              <ion-item *ngFor="let item of navigation_steps">
+                <p [innerHTML]="item.instructions"></p>
+                <ion-note slot="end">{{ item.distance }} ({{ item.duration }})</ion-note>
+              </ion-item>
+            </ion-list>
+          </div>
+          <ion-button (click)="closeModal()">Zatvori</ion-button>
+        </div>
+      </ion-content>
+
+      <ion-content  *ngIf="modalType == 'click_my_location'" class="location ion-padding">
+        <h3>Ovo je vaša lokacija lokacija</h3>
+        <ion-button (click)="closeModal()">Zatvori</ion-button>
+
+      </ion-content>
+
+      <ion-content  *ngIf="modalType == 'near_marker'" class="ion-padding">
+
+        <div class="conteiner">
+          <h3>{{ modalMarker.objekt.content_name }}</h3>
+          <p class="blizina">Nalazite se u blizini točke interesa. Želite li pročitati više o tome?</p>
+
+          <p *ngIf="modalMarker.objekt?.segments[0]?.segment_description">
+            {{ modalMarker.objekt.segments[0].segment_description }}
+          </p>
+
+          <div class="button-conteiner">
+            <ion-button (click)="openText(modalMarker.objekt.content_id)">
+              Saznaj više
+            </ion-button>
+            <ion-button *ngIf="has_my_location" (click)="direction(modalMarker.objekt.content_id)">
+              Navigiraj do točke interesa
+            </ion-button>
+          </div>
+
+          <div *ngIf="!navigationClear">
+            <h3>Upute do točke interesa</h3>
+            <p class="udaljenost">Udaljenost {{ navigation_total_distance }} ({{ navigation_total_time }})</p>
+            <ion-list >
+              <ion-item *ngFor="let item of navigation_steps">
+                <p [innerHTML]="item.instructions"></p>
+                <ion-note slot="end">{{ item.distance }} ({{ item.duration }})</ion-note>
+              </ion-item>
+            </ion-list>
+          </div>
+          <ion-button (click)="closeModal()">Zatvori</ion-button>
+
+        </div>
+
+      </ion-content>
+    </ng-template>
+
+  </ion-modal>
 
   <app-back-button></app-back-button>
   <app-nagrada-btn></app-nagrada-btn>

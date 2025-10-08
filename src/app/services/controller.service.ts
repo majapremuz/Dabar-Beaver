@@ -302,85 +302,82 @@ export class ControllerService {
    * @returns the data from server ApiResult object
    */
   async getServer(url: string, cache: boolean = false, cache_time: number = 5): Promise<ApiResult> {
-    cache_time = cache_time * 1000; //convert to miliseconds
-    let access_token = await this.getStorage(TOKEN_KEY);
-    let refresh_token = await this.getStorage(TOKEN_KEY_REFRESH);
-    let cachedData = await this.checkCache(environment.cache_key + url, cache_time).catch(err => {return undefined;});
-    let company_id = environment.company_id;
+  cache_time = cache_time * 1000; // convert to milliseconds
+  let access_token = await this.getStorage(TOKEN_KEY);
+  let refresh_token = await this.getStorage(TOKEN_KEY_REFRESH);
+  let cachedData = await this.checkCache(environment.cache_key + url, cache_time).catch(() => undefined);
+  let company_id = environment.company_id;
 
-    if(cache == true){
-      if(environment.cache == false){
-        cache = false;
-      }
-    }
-
-    let promise = new Promise<ApiResult>((resolve, reject) => {
-      let apiURL = serverURL + url;
-      apiURL = this.addParameterToUrl(apiURL, 'company_id', company_id.toString());
-      let options = {};
-      if(access_token != null){
-        options = {
-          headers: new HttpHeaders().append('Authorization', "Bearer " + access_token)
-        }
-      }else{
-        options = {};
-      }
-
-      if(cache == true && cachedData != undefined){
-        if(cachedData.status == true && cachedData.data?.valid != false){
-          resolve(cachedData);
-        }else{
-          reject({error: {error: 'server_error', error_description: cachedData.message}, data: cachedData});
-        }
-      }else{
-
-        firstValueFrom(
-          this.http.get(apiURL, options).pipe(take(1))
-        )
-        .then((res: any) => {
-          let miliseconds = Date.now();
-
-          let cache_data = {
-            key: environment.cache_key + url,
-            miliseconds: miliseconds,
-            res: res
-          };
-
-          this.setStorage(cache_data.key, JSON.stringify(cache_data)).then(() => {
-            if(res.status == true && res.data?.valid != false){
-              resolve(res);
-            }else{
-              reject({error: {error: 'server_error', error_description: res.message}, data: res});
-            }
-          });
-        })
-        .catch((err) => {
-          if(err.status == 401){
-            if(refresh_token != null){
-              //this.oauthGetFreshToken()
-            }
-            else{
-              // get offline refresh token
-              this.oauthClientAuthorize().then(() =>{
-                this.getServer(url, cache, cache_time).then(data_2 => {
-                  resolve(data_2);
-                }).catch((err_2) => {
-                  reject(err_2);
-                });
-              }).catch((err_2: any) => {
-                reject(err_2);
-              });
-            }
-          }else{
-            reject(err);
-          }
-        })
-      }
-    });
-
-    return promise;
+  if (cache === true && environment.cache === false) {
+    cache = false;
   }
 
+  // 🔧 Make the Promise callback async:
+  const promise = new Promise<ApiResult>(async (resolve, reject) => {
+    try {
+      let apiURL = serverURL + url;
+      apiURL = this.addParameterToUrl(apiURL, 'company_id', company_id.toString());
+      let options: any = {};
+
+      if (!access_token) {
+        console.warn('No access token found, requesting new client token...');
+        await this.oauthClientAuthorize();
+        access_token = await this.getStorage(TOKEN_KEY);
+      }
+
+      options = {
+        headers: new HttpHeaders().append('Authorization', 'Bearer ' + access_token)
+      };
+
+      if (cache && cachedData !== undefined) {
+        if (cachedData.status === true && cachedData.data?.valid !== false) {
+          return resolve(cachedData);
+        } else {
+          return reject({ error: { error: 'server_error', error_description: cachedData.message }, data: cachedData });
+        }
+      }
+
+      // Perform GET request
+      const res: any = await firstValueFrom(this.http.get(apiURL, options).pipe(take(1)));
+
+      // Cache it
+      const cacheData = {
+        key: environment.cache_key + url,
+        miliseconds: Date.now(),
+        res: res
+      };
+      await this.setStorage(cacheData.key, JSON.stringify(cacheData));
+
+      if (res.status === true && res.data?.valid !== false) {
+        resolve(res);
+      } else {
+        reject({ error: { error: 'server_error', error_description: res.message }, data: res });
+      }
+
+    } catch (err: any) {
+      if (err.status === 401 || err.error?.error === 'invalid_token') {
+        console.warn('Access token invalid or expired. Refreshing...');
+        await this.oauthClientAuthorize();
+        const newToken = await this.getStorage(TOKEN_KEY);
+
+        const retryOptions = {
+          headers: new HttpHeaders().append('Authorization', 'Bearer ' + newToken)
+        };
+
+        try {
+          const retryRes: any = await firstValueFrom(this.http.get(serverURL + url, retryOptions).pipe(take(1)));
+          resolve(retryRes);
+        } catch (retryErr) {
+          reject(retryErr);
+        }
+      } else {
+        reject(err);
+      }
+    }
+  });
+
+  return promise;
+}
 
   async parseErrorMessage(error: any): Promise<ErrorMessage>{
     let errorMessage: ErrorMessage = {title: '', message: '', type: AlertType.Warning};
