@@ -9,7 +9,7 @@ export const environment = {
   client_password: "IvanicDabarPristup",
   rest_server: {
     protokol: 'https://',
-    host: 'ivanic-grad-dabar.versalink-api.com',
+    host: 'petrijanec-api.virtualka8.prolink.hr',
     functions: {
         api: '/api/',
         token: '/token.php'

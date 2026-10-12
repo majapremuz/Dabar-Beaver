@@ -5,7 +5,7 @@ export const environment = {
   client_password: "IvanicDabarPristup",
   rest_server: {
     protokol: 'https://',
-    host: 'ivanic-grad-dabar.versalink-api.com', 
+    host: 'petrijanec-api.virtualka8.prolink.hr', 
     //host: 'rest-api.mkovacic-dev.com', // dev server comp 2
     functions: {
         api: '/api/',
